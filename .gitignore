@@ -1,0 +1,23 @@
+captures/
+
+# Intellij
+*.iml
+.idea/taskses.xml
+.DS_Store
+/build
+/captures
+/.idea/
+/.idea/libraries/
+/.idea/compiler.xml
+/.idea/gradle.xml
+/.idea/runConfigurations.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
+/avon-android-app.iml
+
+app/build.gradle
+build.gradle
+settings.gradle
+networkinglib/build.gradle
