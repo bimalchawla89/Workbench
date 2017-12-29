@@ -11,7 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import architecturedemo.pkg.arun.retail.HomeActivity;
-import architecturedemo.pkg.arun.retail.data.models.Product;
+import architecturedemo.pkg.arun.retail.data.models.ProductData;
 import architecturedemo.pkg.arun.retail.databinding.FragmentProductListBinding;
 
 /**
@@ -70,7 +70,7 @@ public class ProductsFragment extends Fragment {
         ListView productListView =  mProductListBinding.lvProducts;
 
         mListAdapter = new ProductsListAdapter(
-                new ArrayList<Product>(0),
+                new ArrayList<ProductData>(0),
                 mProductViewModel
         );
         productListView.setAdapter(mListAdapter);

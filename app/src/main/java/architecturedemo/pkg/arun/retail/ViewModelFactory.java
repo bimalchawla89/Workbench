@@ -42,7 +42,6 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private final ProductsRepository mProductsRepository;
 
     public static ViewModelFactory getInstance(Application application) {
-
         if (INSTANCE == null) {
             synchronized (ViewModelFactory.class) {
                 if (INSTANCE == null) {

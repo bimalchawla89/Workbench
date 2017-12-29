@@ -9,16 +9,16 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import architecturedemo.pkg.arun.retail.data.models.Product;
+import architecturedemo.pkg.arun.retail.data.models.ProductData;
 import architecturedemo.pkg.arun.retail.databinding.RowProductsListBinding;
 
 
 public class ProductsListAdapter extends BaseAdapter {
 
-    private ArrayList<Product> mProductsList;
+    private ArrayList<ProductData> mProductsList;
     private final ProductViewModel mProductViewModel;
 
-    public ProductsListAdapter(ArrayList<Product> products, ProductViewModel mProductViewModel) {
+    public ProductsListAdapter(ArrayList<ProductData> products, ProductViewModel mProductViewModel) {
         this.mProductsList = products;
         this.mProductViewModel = mProductViewModel;
     }
@@ -29,7 +29,7 @@ public class ProductsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Product getItem(int i) {
+    public ProductData getItem(int i) {
         return mProductsList.get(i);
     }
 
@@ -53,7 +53,7 @@ public class ProductsListAdapter extends BaseAdapter {
         return productsListBinding.getRoot();
     }
 
-    public void updateProductsList(List<Product> productsList) {
+    public void updateProductsList(List<ProductData> productsList) {
         mProductsList = new ArrayList<>(productsList);
         notifyDataSetChanged();
     }

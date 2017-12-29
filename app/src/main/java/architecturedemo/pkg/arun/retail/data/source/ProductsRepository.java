@@ -1,10 +1,10 @@
 package architecturedemo.pkg.arun.retail.data.source;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
-import java.util.List;
-
-import architecturedemo.pkg.arun.retail.data.models.Product;
+import architecturedemo.pkg.arun.retail.data.models.ProductList;
+import architecturedemo.pkg.arun.retail.data.source.local.AppPreferences;
 
 /**
  * Created by Arun.Kumar04 on 12/20/2017.
@@ -30,16 +30,26 @@ public class ProductsRepository implements ProductsDataSource {
     }
 
     @Override
-    public void getProductsList(GetProductsCallback callback) {
-        getProductsFromLocalSource(callback);
+    public void getProductsList(@NonNull Context context, GetProductsCallback callback) {
+        getProductsFromLocalSource(context, callback);
     }
 
-    private void getProductsFromLocalSource(@NonNull final GetProductsCallback callback) {
-        mLocalDataSource.getProductsList(new GetProductsCallback() {
+    @Override
+    public void saveProducts(ProductList productList) {
+        mLocalDataSource.saveProducts(productList);
+    }
+
+    @Override
+    public void getToken(GetTokenCallback getTokenCallback) {
+        mRemoteDataSource.getToken(getTokenCallback);
+    }
+
+    private void getProductsFromLocalSource(@NonNull final Context context, @NonNull final GetProductsCallback callback) {
+        mLocalDataSource.getProductsList(context, new GetProductsCallback() {
             @Override
-            public void onProductsLoaded(List<Product> productList) {
-                if (null == productList || productList.isEmpty()) {
-                    getProductsFromRemoteSource(callback);
+            public void onProductsLoaded(ProductList productList) {
+                if (null == productList || null == productList.getValue() || productList.getValue().isEmpty()) {
+                    getProductsFromRemoteSource(context, callback);
                 } else {
                     callback.onProductsLoaded(productList);
                 }
@@ -47,15 +57,34 @@ public class ProductsRepository implements ProductsDataSource {
 
             @Override
             public void onFailure() {
-                callback.onFailure();
+                getProductsFromRemoteSource(context, callback);
             }
         });
     }
 
-    private void getProductsFromRemoteSource(@NonNull final GetProductsCallback callback) {
-        mRemoteDataSource.getProductsList(new GetProductsCallback() {
+    private void getProductsFromRemoteSource(@NonNull final Context context, @NonNull final GetProductsCallback callback) {
+        if (null == AppPreferences.getToken(context)) {
+            getToken(new GetTokenCallback() {
+                @Override
+                public void onTokenFetched() {
+                    getProducts(context, callback);
+                }
+
+                @Override
+                public void onFailure() {
+
+                }
+            });
+        } else {
+            getProducts(context, callback);
+        }
+    }
+
+    private void getProducts(@NonNull Context context, @NonNull final GetProductsCallback callback) {
+        mRemoteDataSource.getProductsList(context, new GetProductsCallback() {
             @Override
-            public void onProductsLoaded(List<Product> productList) {
+            public void onProductsLoaded(ProductList productList) {
+                saveProducts(productList);
                 callback.onProductsLoaded(productList);
             }
 

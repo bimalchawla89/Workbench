@@ -1,8 +1,8 @@
 package architecturedemo.pkg.arun.retail.data.source;
 
-import java.util.List;
+import android.content.Context;
 
-import architecturedemo.pkg.arun.retail.data.models.Product;
+import architecturedemo.pkg.arun.retail.data.models.ProductList;
 
 /**
  * Created by Arun.Kumar04 on 12/20/2017.
@@ -11,10 +11,20 @@ import architecturedemo.pkg.arun.retail.data.models.Product;
 public interface ProductsDataSource {
 
     interface GetProductsCallback {
-        void onProductsLoaded(List<Product> productList);
+        void onProductsLoaded(ProductList productList);
 
         void onFailure();
     }
 
-    void getProductsList(GetProductsCallback getProductsCallback);
+    interface GetTokenCallback {
+        void onTokenFetched();
+
+        void onFailure();
+    }
+
+    void getToken(GetTokenCallback getTokenCallback);
+
+    void getProductsList(Context context, GetProductsCallback getProductsCallback);
+
+    void saveProducts(ProductList productList);
 }

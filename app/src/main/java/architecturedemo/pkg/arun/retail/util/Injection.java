@@ -35,6 +35,6 @@ public class Injection {
         ProductsDatabase database = ProductsDatabase.getInstance(context);
         return ProductsRepository.getInstance(LocalSource.getInstance(new AppExecutors(),
                 database.productsDao()),
-                RemoteSource.getInstance(new AppExecutors()));
+                RemoteSource.getInstance(context, new AppExecutors()));
     }
 }

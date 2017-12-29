@@ -21,16 +21,16 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import architecturedemo.pkg.arun.retail.data.models.Product;
+import architecturedemo.pkg.arun.retail.data.models.ProductData;
 
 /**
- * Contains {@link BindingAdapter}s for the {@link Product} list.
+ * Contains {@link BindingAdapter}s for the {@link ProductData} list.
  */
 public class ProductsListBindings {
 
     @SuppressWarnings("unchecked")
     @BindingAdapter("app:items")
-    public static void setItems(ListView listView, List<Product> items) {
+    public static void setItems(ListView listView, List<ProductData> items) {
         ProductsListAdapter adapter = (ProductsListAdapter) listView.getAdapter();
         if (adapter != null) {
             adapter.updateProductsList(items);

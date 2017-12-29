@@ -1,50 +1,43 @@
 package architecturedemo.pkg.arun.retail.data.models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.util.List;
 
+@Entity(tableName = "productData")
 public class ProductData implements Serializable {
 
-    @JsonProperty("@search.score")
-    private Float searchScore;
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "id")
     @JsonProperty("id")
     private String id;
+    @Nullable
+    @ColumnInfo(name = "title")
     @JsonProperty("title")
     private String title;
+    @Nullable
+    @ColumnInfo(name = "description")
     @JsonProperty("description")
     private String description;
-    @JsonProperty("category")
-    private String category;
-    @JsonProperty("categoryId")
-    private String categoryId;
-    @JsonProperty("subcategory")
-    private String subcategory;
-    @JsonProperty("subcategoryId")
-    private String subcategoryId;
-    @JsonProperty("modifiers")
-    private List<String> modifiers = null;
-    @JsonProperty("color")
-    private List<String> color = null;
-    @JsonProperty("size")
-    private List<String> size = null;
+    @Nullable
+    @ColumnInfo(name = "price")
     @JsonProperty("price")
     private Float price;
+    @Nullable
+    @ColumnInfo(name = "image_domain")
     @JsonProperty("image_domain")
     private String imageDomain;
+    @Nullable
+    @ColumnInfo(name = "image_suffix")
     @JsonProperty("image_suffix")
     private String imageSuffix;
-
-    @JsonProperty("@search.score")
-    public Float getSearchScore() {
-        return searchScore;
-    }
-
-    @JsonProperty("@search.score")
-    public void setSearchScore(Float searchScore) {
-        this.searchScore = searchScore;
-    }
 
     @JsonProperty("id")
     public String getId() {
@@ -74,76 +67,6 @@ public class ProductData implements Serializable {
     @JsonProperty("description")
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @JsonProperty("category")
-    public String getCategory() {
-        return category;
-    }
-
-    @JsonProperty("category")
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    @JsonProperty("categoryId")
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    @JsonProperty("categoryId")
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    @JsonProperty("subcategory")
-    public String getSubcategory() {
-        return subcategory;
-    }
-
-    @JsonProperty("subcategory")
-    public void setSubcategory(String subcategory) {
-        this.subcategory = subcategory;
-    }
-
-    @JsonProperty("subcategoryId")
-    public String getSubcategoryId() {
-        return subcategoryId;
-    }
-
-    @JsonProperty("subcategoryId")
-    public void setSubcategoryId(String subcategoryId) {
-        this.subcategoryId = subcategoryId;
-    }
-
-    @JsonProperty("modifiers")
-    public List<String> getModifiers() {
-        return modifiers;
-    }
-
-    @JsonProperty("modifiers")
-    public void setModifiers(List<String> modifiers) {
-        this.modifiers = modifiers;
-    }
-
-    @JsonProperty("color")
-    public List<String> getColor() {
-        return color;
-    }
-
-    @JsonProperty("color")
-    public void setColor(List<String> color) {
-        this.color = color;
-    }
-
-    @JsonProperty("size")
-    public List<String> getSize() {
-        return size;
-    }
-
-    @JsonProperty("size")
-    public void setSize(List<String> size) {
-        this.size = size;
     }
 
     @JsonProperty("price")

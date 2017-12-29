@@ -6,9 +6,8 @@ import android.content.Context;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
-import java.util.List;
-
-import architecturedemo.pkg.arun.retail.data.models.Product;
+import architecturedemo.pkg.arun.retail.data.models.ProductData;
+import architecturedemo.pkg.arun.retail.data.models.ProductList;
 import architecturedemo.pkg.arun.retail.data.source.ProductsDataSource;
 import architecturedemo.pkg.arun.retail.data.source.ProductsRepository;
 
@@ -18,7 +17,7 @@ import architecturedemo.pkg.arun.retail.data.source.ProductsRepository;
 
 public class ProductViewModel extends AndroidViewModel {
 
-    public final ObservableList<Product> items = new ObservableArrayList<>();
+    public final ObservableList<ProductData> items = new ObservableArrayList<>();
 
     private final Context mContext;
     private final ProductsRepository mProductsRepository;
@@ -37,11 +36,12 @@ public class ProductViewModel extends AndroidViewModel {
     }
 
     public void getAllProducts() {
-        mProductsRepository.getProductsList(new ProductsDataSource.GetProductsCallback() {
+        mProductsRepository.getProductsList(mContext, new ProductsDataSource.GetProductsCallback() {
+
             @Override
-            public void onProductsLoaded(List<Product> productList) {
+            public void onProductsLoaded(ProductList productList) {
                 items.clear();
-                items.addAll(productList);
+                items.addAll(productList.getValue());
             }
 
             @Override
