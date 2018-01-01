@@ -19,7 +19,6 @@ package architecturedemo.pkg.arun.retail.util;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 /**
  * This provides methods to help Activities load their UI.
@@ -33,9 +32,7 @@ public class ActivityUtils {
      */
     public static void replaceFragmentInActivity(@NonNull FragmentManager fragmentManager,
                                                  @NonNull Fragment fragment, int frameId) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(frameId, fragment);
-        transaction.commit();
+        fragmentManager.beginTransaction().replace(frameId, fragment).commit();
     }
 
     /**
@@ -45,8 +42,6 @@ public class ActivityUtils {
      */
     public static void replaceFragmentInActivity(@NonNull FragmentManager fragmentManager,
                                                  @NonNull Fragment fragment, String tag) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(fragment, tag);
-        transaction.commit();
+        fragmentManager.beginTransaction().add(fragment, tag).commit();
     }
 }

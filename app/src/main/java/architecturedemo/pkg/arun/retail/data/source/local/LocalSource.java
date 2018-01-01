@@ -81,6 +81,27 @@ public class LocalSource implements ProductsDataSource {
     }
 
     @Override
+    public void getProductData(@NonNull final Context context, final String productId, @NonNull final GetProductDataCallback productsCallback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                final ProductData productData = mProductsDao.getProductById(productId);
+                mAppExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (null != productData) {
+                            productsCallback.onProductDataLoaded(productData);
+                        } else {
+                            productsCallback.onFailure();
+                        }
+                    }
+                });
+            }
+        };
+        mAppExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
     public void saveProducts(final ProductList productList) {
         Runnable runnable = new Runnable() {
             @Override

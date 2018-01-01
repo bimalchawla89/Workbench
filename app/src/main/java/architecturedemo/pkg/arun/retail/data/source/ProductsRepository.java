@@ -3,6 +3,7 @@ package architecturedemo.pkg.arun.retail.data.source;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import architecturedemo.pkg.arun.retail.data.models.ProductData;
 import architecturedemo.pkg.arun.retail.data.models.ProductList;
 import architecturedemo.pkg.arun.retail.data.source.local.AppPreferences;
 
@@ -35,6 +36,11 @@ public class ProductsRepository implements ProductsDataSource {
     }
 
     @Override
+    public void getProductData(@NonNull Context context, String productId, GetProductDataCallback callback) {
+        getProductDataFromLocalSource(context, productId, callback);
+    }
+
+    @Override
     public void saveProducts(ProductList productList) {
         mLocalDataSource.saveProducts(productList);
     }
@@ -62,8 +68,26 @@ public class ProductsRepository implements ProductsDataSource {
         });
     }
 
+    private void getProductDataFromLocalSource(@NonNull final Context context, final String productId, @NonNull final GetProductDataCallback callback) {
+        mLocalDataSource.getProductData(context, productId, new GetProductDataCallback() {
+            @Override
+            public void onProductDataLoaded(ProductData productData) {
+//                if (null == productData) {
+//                    getProductsFromRemoteSource(context, callback);
+//                } else {
+                    callback.onProductDataLoaded(productData);
+//                }
+            }
+
+            @Override
+            public void onFailure() {
+                callback.onFailure();
+            }
+        });
+    }
+
     private void getProductsFromRemoteSource(@NonNull final Context context, @NonNull final GetProductsCallback callback) {
-        if (null == AppPreferences.getToken(context)) {
+        /*if (null == AppPreferences.getToken(context)) {
             getToken(new GetTokenCallback() {
                 @Override
                 public void onTokenFetched() {
@@ -77,7 +101,8 @@ public class ProductsRepository implements ProductsDataSource {
             });
         } else {
             getProducts(context, callback);
-        }
+        }*/
+        getProducts(context, callback);
     }
 
     private void getProducts(@NonNull Context context, @NonNull final GetProductsCallback callback) {

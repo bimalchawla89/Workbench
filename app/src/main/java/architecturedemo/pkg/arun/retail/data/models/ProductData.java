@@ -6,11 +6,13 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
 @Entity(tableName = "productData")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductData implements Serializable {
 
     @PrimaryKey

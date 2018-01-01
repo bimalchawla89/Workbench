@@ -19,10 +19,8 @@ public interface RemoteServices {
     Call<ApiTokenModel> getApiToken(
             @Header("Authorization") String apiKey);
 
-    @GET("/indexes/products/docs")
+    @GET("/indexes/products/docs?api-version=2015-02-28&search=touring bikes")
     Call<ProductList> findProductsByTitle(
-            @Header("api-key") String apiKey,
-            @Query("api-version") String apiVersion,
-            @Query("search") String filter
+            @Header("api-key") String apiKey
     );
 }

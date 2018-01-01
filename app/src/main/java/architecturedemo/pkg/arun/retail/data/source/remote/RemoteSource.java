@@ -27,7 +27,7 @@ public class RemoteSource implements ProductsDataSource {
     private static AppComponent mComponent;
     private Context mContext;
     private AppExecutors mAppExecutors;
-    private static final String apiKey = "1D9B788C83C1DD0FBB2EBF0D2F5D75AE";
+    private static final String apiKey = "1662124823BA2484B430ADBCC1A9B599";
     private static final String key = "Bearer 4C4V4yUMvgI.cwA.cYw.qakgvIUDhYbrydkQgY59UniNz7HxTi5luInXlweDEZ8";
     private static final String apiVersion = "2015-02-28";
     @Inject
@@ -50,18 +50,18 @@ public class RemoteSource implements ProductsDataSource {
     }
 
     @Override
-    public void getProductsList(Context context, GetProductsCallback getProductsCallback) {
+    public void getProductsList(Context context, final GetProductsCallback getProductsCallback) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 mAppExecutors.networkIO().execute(new Runnable() {
                     @Override
                     public void run() {
-                        Call<ProductList> tokenModelCall = mRemoteServices.findProductsByTitle(apiKey, apiVersion, "");
+                        Call<ProductList> tokenModelCall = mRemoteServices.findProductsByTitle(apiKey);
                         tokenModelCall.enqueue(new Callback<ProductList>() {
                             @Override
                             public void onResponse(Call<ProductList> call, Response<ProductList> response) {
-
+                                getProductsCallback.onProductsLoaded(response.body());
                             }
 
                             @Override
@@ -74,6 +74,11 @@ public class RemoteSource implements ProductsDataSource {
             }
         };
         mAppExecutors.networkIO().execute(runnable);
+    }
+
+    @Override
+    public void getProductData(Context context, String productId, GetProductDataCallback getProductsCallback) {
+
     }
 
     @Override

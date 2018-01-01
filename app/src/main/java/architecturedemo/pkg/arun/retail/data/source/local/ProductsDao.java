@@ -19,8 +19,8 @@ public interface ProductsDao {
 //    @Query("SELECT * FROM Product")
 //    List<Product> getAllProducts();
 //
-//    @Query("SELECT * FROM Product WHERE productId = :productId")
-//    Product getProductById(String productId);
+    @Query("SELECT * FROM productData WHERE id = :productId")
+    ProductData getProductById(String productId);
 //
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    void insertProduct(Product product);

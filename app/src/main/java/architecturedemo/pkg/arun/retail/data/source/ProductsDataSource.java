@@ -2,6 +2,7 @@ package architecturedemo.pkg.arun.retail.data.source;
 
 import android.content.Context;
 
+import architecturedemo.pkg.arun.retail.data.models.ProductData;
 import architecturedemo.pkg.arun.retail.data.models.ProductList;
 
 /**
@@ -16,6 +17,12 @@ public interface ProductsDataSource {
         void onFailure();
     }
 
+    interface GetProductDataCallback {
+        void onProductDataLoaded(ProductData productData);
+
+        void onFailure();
+    }
+
     interface GetTokenCallback {
         void onTokenFetched();
 
@@ -25,6 +32,8 @@ public interface ProductsDataSource {
     void getToken(GetTokenCallback getTokenCallback);
 
     void getProductsList(Context context, GetProductsCallback getProductsCallback);
+
+    void getProductData(Context context, String productId, GetProductDataCallback getProductsCallback);
 
     void saveProducts(ProductList productList);
 }

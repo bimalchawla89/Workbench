@@ -23,6 +23,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.VisibleForTesting;
 
 import architecturedemo.pkg.arun.retail.data.source.ProductsRepository;
+import architecturedemo.pkg.arun.retail.productslist.ProductDetailViewModel;
 import architecturedemo.pkg.arun.retail.productslist.ProductViewModel;
 import architecturedemo.pkg.arun.retail.util.Injection;
 
@@ -69,10 +70,11 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             //noinspection unchecked
             return (T) new ProductViewModel(mApplication, mProductsRepository);
         }
-//        else if (modelClass.isAssignableFrom(TaskDetailViewModel.class)) {
-//            //noinspection unchecked
-//            return (T) new TaskDetailViewModel(mApplication, mTasksRepository);
-//        } else if (modelClass.isAssignableFrom(AddEditTaskViewModel.class)) {
+        else if (modelClass.isAssignableFrom(ProductDetailViewModel.class)) {
+            //noinspection unchecked
+            return (T) new ProductDetailViewModel(mApplication, mProductsRepository);
+        }
+//        else if (modelClass.isAssignableFrom(AddEditTaskViewModel.class)) {
 //            //noinspection unchecked
 //            return (T) new AddEditTaskViewModel(mApplication, mTasksRepository);
 //        } else if (modelClass.isAssignableFrom(TasksViewModel.class)) {

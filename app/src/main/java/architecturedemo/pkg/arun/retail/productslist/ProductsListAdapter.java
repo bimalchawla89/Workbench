@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +49,17 @@ public class ProductsListAdapter extends BaseAdapter {
             productsListBinding = DataBindingUtil.getBinding(view);
         }
 
+        ProductItemActionsListener userActionsListener = new ProductItemActionsListener() {
+            @Override
+            public void onProductClicked(ProductData productData) {
+                mProductViewModel.getOpenProductEvent().setValue(productData.getId());
+            }
+        };
+
+        productsListBinding.setListener(userActionsListener);
         productsListBinding.setProduct(mProductsList.get(i));
         productsListBinding.executePendingBindings();
+
         return productsListBinding.getRoot();
     }
 
