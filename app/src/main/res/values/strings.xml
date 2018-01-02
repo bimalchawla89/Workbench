@@ -17,4 +17,5 @@
     <string name="product">Products</string>
     <string name="product_detail">Product Detail</string>
     <string name="action_websearch">Web search</string>
+    <string name="add_cart">Add To Cart</string>
 </resources>

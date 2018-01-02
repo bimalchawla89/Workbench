@@ -40,6 +40,10 @@ public class ProductData implements Serializable {
     @ColumnInfo(name = "image_suffix")
     @JsonProperty("image_suffix")
     private String imageSuffix;
+    @Nullable
+    @ColumnInfo(name = "productAdded")
+    @JsonProperty("productAdded")
+    private boolean productAdded;
 
     @JsonProperty("id")
     public String getId() {
@@ -101,4 +105,13 @@ public class ProductData implements Serializable {
         this.imageSuffix = imageSuffix;
     }
 
+    @JsonProperty("productAdded")
+    public boolean getProductAdded() {
+        return productAdded;
+    }
+
+    @JsonProperty("productAdded")
+    public void setProductAdded(@Nullable boolean productAdded) {
+        this.productAdded = productAdded;
+    }
 }

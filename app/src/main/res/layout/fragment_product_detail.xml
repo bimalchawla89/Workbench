@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
- >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <import type="android.view.View" />
+        <import type="android.view.View.OnClickListener" />
 
         <variable
             name="model"
             type="architecturedemo.pkg.arun.retail.productslist.ProductDetailViewModel" />
+
+        <variable
+            name="listener"
+            type="architecturedemo.pkg.arun.retail.productslist.AddToCartActionListener" />
 
     </data>
 
@@ -18,14 +23,11 @@
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
             android:id="@+id/product_id"
-            style="?android:textAppearanceLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{model.task.id}"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
+            app:imageUrl="@{model.task.imageDomain}" />
 
         <TextView
             android:id="@+id/product_title"
@@ -33,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:text="@{model.task.title}"/>
+            android:text="@{model.task.title}" />
 
         <TextView
             android:id="@+id/product_description"
@@ -41,14 +43,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:text="@{model.task.description}"/>
+            android:text="@{model.task.description}" />
 
         <TextView
             android:id="@+id/product_price"
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(model.task.price)}"/>
+            android:text="@{String.valueOf(model.task.price)}" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{() -> listener.onAddToCartClicked()}">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:visibility="@{model.task.productAdded ? View.GONE : View.VISIBLE}"
+                android:text="@string/add_cart" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 

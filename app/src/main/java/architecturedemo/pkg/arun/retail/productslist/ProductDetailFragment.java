@@ -6,16 +6,12 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 
-import architecturedemo.pkg.arun.retail.HomeActivity;
 import architecturedemo.pkg.arun.retail.ProductsActivity;
 import architecturedemo.pkg.arun.retail.R;
+import architecturedemo.pkg.arun.retail.data.models.ProductData;
 import architecturedemo.pkg.arun.retail.databinding.FragmentProductDetailBinding;
 
 public class ProductDetailFragment extends Fragment {
@@ -50,8 +46,19 @@ public class ProductDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mFragmentProductDetailBinding = FragmentProductDetailBinding.inflate(inflater, container, false);
+
+        AddToCartActionListener addToCartActionListener = new AddToCartActionListener() {
+            @Override
+            public void onAddToCartClicked() {
+                mProductDetailViewModel.addToCart();
+            }
+        };
+
         mProductDetailViewModel = ProductsActivity.obtainViewModel(getActivity());
+        mFragmentProductDetailBinding.setListener(addToCartActionListener);
         mFragmentProductDetailBinding.setModel(mProductDetailViewModel);
+        mFragmentProductDetailBinding.executePendingBindings();
+
         return mFragmentProductDetailBinding.getRoot();
     }
 
