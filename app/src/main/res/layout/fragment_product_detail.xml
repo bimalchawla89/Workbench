@@ -54,14 +54,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="@{() -> listener.onAddToCartClicked()}">
+            android:layout_height="match_parent">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:visibility="@{model.task.productAdded ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> listener.onAddToCartClicked()}"
+                android:visibility="@{model.addedToCart ? View.GONE : View.VISIBLE}"
                 android:text="@string/add_cart" />
 
         </RelativeLayout>
