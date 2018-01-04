@@ -14,64 +14,60 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import architecturedemo.pkg.arun.retail.data.models.ProductData;
+import architecturedemo.pkg.arun.retail.data.models.CategoryData;
 import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
-import architecturedemo.pkg.arun.retail.databinding.ActivityProductsBinding;
 import architecturedemo.pkg.arun.retail.databinding.ActivitySubCategoriesBinding;
-import architecturedemo.pkg.arun.retail.productslist.ProductViewModel;
-import architecturedemo.pkg.arun.retail.productslist.ProductsListAdapter;
 import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoriesListAdapter;
 import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoryViewModel;
 
-public class ProductsActivity extends AppCompatActivity {
+public class SubCategoriesActivity extends AppCompatActivity {
 
-
-    public static final String EXTRA_PRODUCT_ID = "PRODUCT_ID";
-    private ProductViewModel mProductViewModel;
-    private ProductsListAdapter mListAdapter;
+    public static final String EXTRA_CATEGORY_ID = "CATEGORY_ID";
+    private SubCategoryViewModel mSubCategoryViewModel;
+    private SubCategoriesListAdapter mListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityProductsBinding activitySubCategoriesBinding = DataBindingUtil.setContentView(this, R.layout.activity_products);
-        mProductViewModel = obtainViewModel(this);
-        mProductViewModel.getAllProducts(getIntent().getStringExtra(EXTRA_PRODUCT_ID));
+        ActivitySubCategoriesBinding activitySubCategoriesBinding = DataBindingUtil.setContentView(this, R.layout.activity_sub_categories);
+        mSubCategoryViewModel = obtainViewModel(this);
+        mSubCategoryViewModel.getAllSubCategories(getIntent().getStringExtra(EXTRA_CATEGORY_ID));
 
-        activitySubCategoriesBinding.setModel(mProductViewModel);
+        activitySubCategoriesBinding.setModel(mSubCategoryViewModel);
         activitySubCategoriesBinding.executePendingBindings();
 
         setupToolbar();
         // Subscribe to "add to cart" event
-        mProductViewModel.getOpenProductEvent().observe(this, new Observer<String>() {
+        mSubCategoryViewModel.getOpenSubCategoryEvent().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String categoryId) {
                 if (categoryId != null) {
-                    openProductDetails(categoryId);
+                    openSubCategory(categoryId);
                 }
             }
         });
         setupListAdapter(activitySubCategoriesBinding);
     }
 
-    private void openProductDetails(String categoryId) {
-        Intent intent = new Intent(this, ProductDetailActivity.class);
-        intent.putExtra(ProductDetailActivity.EXTRA_PRODUCT_ID, categoryId);
+    private void openSubCategory(String categoryId) {
+        Intent intent = new Intent(this, ProductsActivity.class);
+        intent.putExtra(ProductsActivity.EXTRA_PRODUCT_ID, categoryId);
         startActivity(intent);
     }
 
-    public static ProductViewModel obtainViewModel(FragmentActivity activity) {
+    public static SubCategoryViewModel obtainViewModel(FragmentActivity activity) {
         // Use a Factory to inject dependencies into the ViewModel
         ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
 
-        return ViewModelProviders.of(activity, factory).get(ProductViewModel.class);
+        return ViewModelProviders.of(activity, factory).get(SubCategoryViewModel.class);
 
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.products_toolbar);
+        Toolbar toolbar = findViewById(R.id.sub_categories_toolbar);
 
-        setTitle(getString(R.string.product));
+        setTitle(getString(R.string.sub_category));
 
 
         //setting toolbar title
@@ -93,12 +89,12 @@ public class ProductsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupListAdapter(ActivityProductsBinding activityProductsBinding) {
-        ListView categoryListView =  activityProductsBinding.lvProducts;
+    private void setupListAdapter(ActivitySubCategoriesBinding activitySubCategoriesBinding) {
+        ListView categoryListView =  activitySubCategoriesBinding.lvSubCategories;
 
-        mListAdapter = new ProductsListAdapter(
-                new ArrayList<ProductData>(0),
-                mProductViewModel
+        mListAdapter = new SubCategoriesListAdapter(
+                new ArrayList<SubcategoryData>(0),
+                mSubCategoryViewModel
         );
         categoryListView.setAdapter(mListAdapter);
     }

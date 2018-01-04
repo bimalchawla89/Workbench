@@ -3,21 +3,15 @@ package architecturedemo.pkg.arun.retail.productslist;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.content.Context;
-import android.content.Intent;
-import android.database.Observable;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
-import architecturedemo.pkg.arun.retail.ProductsActivity;
 import architecturedemo.pkg.arun.retail.data.models.ProductData;
 import architecturedemo.pkg.arun.retail.data.models.ProductList;
-import architecturedemo.pkg.arun.retail.data.source.ProductsDataSource;
-import architecturedemo.pkg.arun.retail.data.source.ProductsRepository;
+import architecturedemo.pkg.arun.retail.data.source.AppDataSource;
+import architecturedemo.pkg.arun.retail.data.source.AppRepository;
 import architecturedemo.pkg.arun.retail.util.SingleLiveEvent;
 
-/**
- * Created by Arun.Kumar04 on 12/26/2017.
- */
 
 public class ProductViewModel extends AndroidViewModel {
 
@@ -25,12 +19,12 @@ public class ProductViewModel extends AndroidViewModel {
     private final SingleLiveEvent<String> mOpenProductEvent = new SingleLiveEvent<>();
 
     private final Context mContext;
-    private final ProductsRepository mProductsRepository;
+    private final AppRepository mProductsRepository;
 
 
     public ProductViewModel(
             Application context,
-            ProductsRepository repository) {
+            AppRepository repository) {
         super(context);
         mContext = context.getApplicationContext(); // Force use of Application Context.
         mProductsRepository = repository;
@@ -40,8 +34,8 @@ public class ProductViewModel extends AndroidViewModel {
 
     }
 
-    public void getAllProducts() {
-        mProductsRepository.getProductsList(mContext, new ProductsDataSource.GetProductsCallback() {
+    public void getAllProducts(String productId) {
+        mProductsRepository.getProductsList(mContext, productId, new AppDataSource.GetProductsCallback() {
 
             @Override
             public void onProductsLoaded(ProductList productList) {

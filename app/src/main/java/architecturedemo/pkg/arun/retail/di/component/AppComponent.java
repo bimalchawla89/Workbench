@@ -17,8 +17,6 @@
 
 package architecturedemo.pkg.arun.retail.di.component;
 
-import android.content.Context;
-
 import javax.inject.Singleton;
 
 import architecturedemo.pkg.arun.retail.data.source.remote.RemoteServices;

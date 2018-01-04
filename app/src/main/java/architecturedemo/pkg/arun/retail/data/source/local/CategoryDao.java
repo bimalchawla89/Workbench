@@ -7,20 +7,13 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import architecturedemo.pkg.arun.retail.data.models.ProductData;
-
-/**
- * Created by Arun.Kumar04 on 12/22/2017.
- */
+import architecturedemo.pkg.arun.retail.data.models.CategoryData;
 
 @Dao
-public interface ProductsDao {
+public interface CategoryDao {
 
-//    @Query("SELECT * FROM Product")
+    //    @Query("SELECT * FROM Product")
 //    List<Product> getAllProducts();
-//
-    @Query("SELECT * FROM productData WHERE id = :productId")
-    ProductData getProductById(String productId);
 //
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    void insertProduct(Product product);
@@ -35,12 +28,9 @@ public interface ProductsDao {
 //    void deleteProducts();
 
 
-    @Query("SELECT * FROM productData")
-    List<ProductData> getAllProductsData();
-
-    @Query("SELECT * FROM productData WHERE id = :productId")
-    List<ProductData> getAllProductsDataById(String productId);
+    @Query("SELECT * FROM categoryData")
+    List<CategoryData> getAllCategoriesData();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertProduct(ProductData productData);
+    void insertCategory(CategoryData categoryData);
 }

@@ -19,12 +19,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import architecturedemo.pkg.arun.retail.categorieslist.CategoriesFragment;
+import architecturedemo.pkg.arun.retail.categorieslist.CategoryViewModel;
 import architecturedemo.pkg.arun.retail.fragments.CartFragment;
 import architecturedemo.pkg.arun.retail.fragments.LogoutFragment;
 import architecturedemo.pkg.arun.retail.fragments.ProfileFragment;
 import architecturedemo.pkg.arun.retail.fragments.PushFragment;
-import architecturedemo.pkg.arun.retail.productslist.ProductViewModel;
-import architecturedemo.pkg.arun.retail.productslist.ProductsFragment;
 import architecturedemo.pkg.arun.retail.util.ActivityUtils;
 
 public class HomeActivity extends AppCompatActivity implements CartFragment.OnFragmentInteractionListener,
@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
     private CharSequence mTitle;
     private String[] mMenuItems;
     private Toolbar toolbar;
-    private ProductViewModel mViewModel;
+    private CategoryViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +49,16 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
 
         setupNavigationDrawer();
 
+        obtainViewModel(this);
+
         mViewModel = obtainViewModel(this);
 
         // Subscribe to "open task" event
-        mViewModel.getOpenProductEvent().observe(this, new Observer<String>() {
+        mViewModel.getOpenCategoryEvent().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(@Nullable String productId) {
-                if (productId != null) {
-                    openProductDetails(productId);
+            public void onChanged(@Nullable String categoryId) {
+                if (categoryId != null) {
+                    openSubCategory(categoryId);
                 }
             }
         });
@@ -66,19 +68,19 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
         }
     }
 
-    public void openProductDetails(String productId) {
-        Intent intent = new Intent(this, ProductsActivity.class);
-        intent.putExtra(ProductsActivity.EXTRA_PRODUCT_ID, productId);
+    private void openSubCategory(String categoryId) {
+        Intent intent = new Intent(this, SubCategoriesActivity.class);
+        intent.putExtra(SubCategoriesActivity.EXTRA_CATEGORY_ID, categoryId);
         startActivity(intent);
 
     }
 
-    public static ProductViewModel obtainViewModel(FragmentActivity activity) {
+    public static CategoryViewModel obtainViewModel(FragmentActivity activity) {
         // Use a Factory to inject dependencies into the ViewModel
         ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
 
-        ProductViewModel viewModel =
-                ViewModelProviders.of(activity, factory).get(ProductViewModel.class);
+        CategoryViewModel viewModel =
+                ViewModelProviders.of(activity, factory).get(CategoryViewModel.class);
 
         return viewModel;
     }
@@ -135,7 +137,7 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
         switch (position) {
             // update the main content by replacing fragments
             case 0:
-                fragment = new ProductsFragment();
+                fragment = new CategoriesFragment();
                 break;
             case 1:
                 fragment = new ProfileFragment();

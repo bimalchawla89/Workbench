@@ -5,31 +5,35 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
+import architecturedemo.pkg.arun.retail.data.models.CategoryData;
+import architecturedemo.pkg.arun.retail.data.models.CategoryList;
 import architecturedemo.pkg.arun.retail.data.models.ProductData;
 import architecturedemo.pkg.arun.retail.data.models.ProductList;
-import architecturedemo.pkg.arun.retail.data.source.ProductsDataSource;
+import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
+import architecturedemo.pkg.arun.retail.data.models.SubcategoryList;
+import architecturedemo.pkg.arun.retail.data.source.AppDataSource;
 import architecturedemo.pkg.arun.retail.util.AppExecutors;
 
-/**
- * Created by Arun.Kumar04 on 12/20/2017.
- */
-
-public class LocalSource implements ProductsDataSource {
+public class LocalSource implements AppDataSource {
 
     private static volatile LocalSource INSTANCE;
     private AppExecutors mAppExecutors;
     private ProductsDao mProductsDao;
+    private CategoryDao mCategoriesDao;
+    private SubCategoryDao mSubCategoriesDao;
 
-    private LocalSource(AppExecutors appExecutors, ProductsDao productsDao) {
+    private LocalSource(AppExecutors appExecutors, ProductsDao productsDao, CategoryDao categoryDao, SubCategoryDao subCategoryDao) {
         mAppExecutors = appExecutors;
         mProductsDao = productsDao;
+        mCategoriesDao = categoryDao;
+        mSubCategoriesDao = subCategoryDao;
         // insertDummyData();
     }
 
-    public static LocalSource getInstance(@NonNull AppExecutors appExecutors, @NonNull ProductsDao productsDao) {
+    public static LocalSource getInstance(@NonNull AppExecutors appExecutors, @NonNull ProductsDao productsDao, @NonNull CategoryDao categoryDao, @NonNull SubCategoryDao subCategoryDao) {
         synchronized (LocalSource.class) {
             if (null == INSTANCE) {
-                INSTANCE = new LocalSource(appExecutors, productsDao);
+                INSTANCE = new LocalSource(appExecutors, productsDao, categoryDao, subCategoryDao);
             }
             return INSTANCE;
         }
@@ -58,11 +62,11 @@ public class LocalSource implements ProductsDataSource {
 //    }
 
     @Override
-    public void getProductsList(@NonNull final Context context, @NonNull final GetProductsCallback productsCallback) {
+    public void getProductsList(@NonNull final Context context, final String productId, @NonNull final GetProductsCallback productsCallback) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                final List<ProductData> productList = mProductsDao.getAllProductsData();
+                final List<ProductData> productList = mProductsDao.getAllProductsDataById(productId);
                 mAppExecutors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {
@@ -79,6 +83,53 @@ public class LocalSource implements ProductsDataSource {
         };
         mAppExecutors.diskIO().execute(runnable);
     }
+
+    @Override
+    public void getCategoriesList(@NonNull final Context context, @NonNull final GetCategoriesCallback categoriesCallback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                final List<CategoryData> categoryDataList = mCategoriesDao.getAllCategoriesData();
+                mAppExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (null != categoryDataList && !categoryDataList.isEmpty()) {
+                            CategoryList list = new CategoryList();
+                            list.setValue(categoryDataList);
+                            categoriesCallback.onCategoriesLoaded(list);
+                        } else {
+                            categoriesCallback.onFailure();
+                        }
+                    }
+                });
+            }
+        };
+        mAppExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
+    public void getSubCategoriesList(@NonNull final Context context, final String categoryId, @NonNull final GetSubCategoriesCallback subCategoriesCallback) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                final List<SubcategoryData> subCategoryDataList = mSubCategoriesDao.getAllSubCategoriesData(categoryId);
+                mAppExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (null != subCategoryDataList && !subCategoryDataList.isEmpty()) {
+                            SubcategoryList list = new SubcategoryList();
+                            list.setValue(subCategoryDataList);
+                            subCategoriesCallback.onSubCategoriesLoaded(list);
+                        } else {
+                            subCategoriesCallback.onFailure();
+                        }
+                    }
+                });
+            }
+        };
+        mAppExecutors.diskIO().execute(runnable);
+    }
+
 
     @Override
     public void getProductData(@NonNull final Context context, final String productId, @NonNull final GetProductDataCallback productsCallback) {
@@ -108,6 +159,32 @@ public class LocalSource implements ProductsDataSource {
             public void run() {
                 for (int i = 0; i < productList.getValue().size(); i++) {
                     mProductsDao.insertProduct(productList.getValue().get(i));
+                }
+            }
+        };
+        mAppExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
+    public void saveCategories(final CategoryList categoryList) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < categoryList.getValue().size(); i++) {
+                    mCategoriesDao.insertCategory(categoryList.getValue().get(i));
+                }
+            }
+        };
+        mAppExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
+    public void saveSubCategories(final SubcategoryList categoryList) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < categoryList.getValue().size(); i++) {
+                    mSubCategoriesDao.insertSubCategory(categoryList.getValue().get(i));
                 }
             }
         };

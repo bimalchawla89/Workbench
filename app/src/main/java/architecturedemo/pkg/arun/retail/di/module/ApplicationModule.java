@@ -17,13 +17,8 @@
 
 package architecturedemo.pkg.arun.retail.di.module;
 
-import android.content.Context;
-
-import javax.inject.Singleton;
-
 import architecturedemo.pkg.arun.retail.MyApplication;
 import dagger.Module;
-import dagger.Provides;
 
 
 @Module

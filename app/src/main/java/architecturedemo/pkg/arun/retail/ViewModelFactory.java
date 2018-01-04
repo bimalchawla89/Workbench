@@ -22,9 +22,11 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.VisibleForTesting;
 
-import architecturedemo.pkg.arun.retail.data.source.ProductsRepository;
+import architecturedemo.pkg.arun.retail.categorieslist.CategoryViewModel;
+import architecturedemo.pkg.arun.retail.data.source.AppRepository;
 import architecturedemo.pkg.arun.retail.productdetails.ProductDetailViewModel;
 import architecturedemo.pkg.arun.retail.productslist.ProductViewModel;
+import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoryViewModel;
 import architecturedemo.pkg.arun.retail.util.Injection;
 
 /**
@@ -40,7 +42,7 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final Application mApplication;
 
-    private final ProductsRepository mProductsRepository;
+    private final AppRepository mProductsRepository;
 
     public static ViewModelFactory getInstance(Application application) {
         if (INSTANCE == null) {
@@ -59,7 +61,7 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         INSTANCE = null;
     }
 
-    private ViewModelFactory(Application application, ProductsRepository repository) {
+    private ViewModelFactory(Application application, AppRepository repository) {
         mApplication = application;
         mProductsRepository = repository;
     }
@@ -74,13 +76,13 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             //noinspection unchecked
             return (T) new ProductDetailViewModel(mApplication, mProductsRepository);
         }
-//        else if (modelClass.isAssignableFrom(AddEditTaskViewModel.class)) {
-//            //noinspection unchecked
-//            return (T) new AddEditTaskViewModel(mApplication, mTasksRepository);
-//        } else if (modelClass.isAssignableFrom(TasksViewModel.class)) {
-//            //noinspection unchecked
-//            return (T) new TasksViewModel(mApplication, mTasksRepository);
-//        }
+        else if (modelClass.isAssignableFrom(CategoryViewModel.class)) {
+            //noinspection unchecked
+            return (T) new CategoryViewModel(mApplication, mProductsRepository);
+        } else if (modelClass.isAssignableFrom(SubCategoryViewModel.class)) {
+            //noinspection unchecked
+            return (T) new SubCategoryViewModel(mApplication, mProductsRepository);
+        }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
 }

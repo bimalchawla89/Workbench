@@ -19,22 +19,22 @@ package architecturedemo.pkg.arun.retail.util;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import architecturedemo.pkg.arun.retail.data.source.ProductsRepository;
+import architecturedemo.pkg.arun.retail.data.source.AppRepository;
 import architecturedemo.pkg.arun.retail.data.source.local.LocalSource;
 import architecturedemo.pkg.arun.retail.data.source.local.ProductsDatabase;
 import architecturedemo.pkg.arun.retail.data.source.remote.RemoteSource;
 
 /**
  * Enables injection of mock implementations for
- * {@link architecturedemo.pkg.arun.retail.data.source.ProductsDataSource} at compile time. This is useful for testing, since it allows us to use
+ * {@link architecturedemo.pkg.arun.retail.data.source.AppDataSource} at compile time. This is useful for testing, since it allows us to use
  * a fake instance of the class to isolate the dependencies and run a test hermetically.
  */
 public class Injection {
 
-    public static ProductsRepository provideProductsRepository(@NonNull Context context) {
+    public static AppRepository provideProductsRepository(@NonNull Context context) {
         ProductsDatabase database = ProductsDatabase.getInstance(context);
-        return ProductsRepository.getInstance(LocalSource.getInstance(new AppExecutors(),
-                database.productsDao()),
+        return AppRepository.getInstance(LocalSource.getInstance(new AppExecutors(),
+                database.productsDao(), database.categoryDao(), database.subCategoryDao()),
                 RemoteSource.getInstance(context, new AppExecutors()));
     }
 }

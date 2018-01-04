@@ -4,18 +4,13 @@
 
     <data>
 
-        <import type="android.view.View.OnClickListener" />
+        <import type="android.view.View" />
 
         <variable
-            name="product"
-            type="architecturedemo.pkg.arun.retail.data.models.ProductData" />
-
-        <variable
-            name="listener"
-            type="architecturedemo.pkg.arun.retail.productslist.ProductItemActionsListener" />
+            name="model"
+            type="architecturedemo.pkg.arun.retail.productslist.ProductViewModel" />
 
     </data>
-
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -37,17 +32,13 @@
 
         </android.support.design.widget.AppBarLayout>
 
-            <android.support.design.widget.CoordinatorLayout
-                android:id="@+id/coordinatorLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <FrameLayout
-                    android:id="@+id/contentFrame"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </android.support.design.widget.CoordinatorLayout>
+        <ListView
+            android:id="@+id/lv_products"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:items="@{model.items}"
+            android:background="#aaaaaa"/>
 
     </LinearLayout>
 
