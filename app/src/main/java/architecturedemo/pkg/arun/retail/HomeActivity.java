@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
     private ActionBarDrawerToggle mDrawerToggle;
 
     private CharSequence mTitle;
-    private String[] mPlanetTitles;
+    private String[] mMenuItems;
     private Toolbar toolbar;
     private ProductViewModel mViewModel;
 
@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
     }
 
     private void setupNavigationDrawer() {
-        mPlanetTitles = getResources().getStringArray(R.array.menu_array);
+        mMenuItems = getResources().getStringArray(R.array.menu_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -100,7 +100,7 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mPlanetTitles));
+                R.layout.drawer_list_item, mMenuItems));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // ActionBarDrawerToggle ties together the the proper interactions
@@ -114,8 +114,6 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
         );
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
-
-
     }
 
     @Override
@@ -123,8 +121,7 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
 
     }
 
-
-    /* The click listner for ListView in the navigation drawer */
+    /* The click listener for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -162,10 +159,8 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
 
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(mPlanetTitles[position]);
+        setTitle(mMenuItems[position]);
         mDrawerLayout.closeDrawer(GravityCompat.START);
-
-
     }
 
     @Override
