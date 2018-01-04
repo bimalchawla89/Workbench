@@ -10,7 +10,7 @@ public class SubcategoryList implements Serializable {
     @JsonProperty("@odata.context")
     private String odataContext;
     @JsonProperty("value")
-    private List<SubcategoryData> value = null;
+    private List<SubCategoryData> value = null;
 
     @JsonProperty("@odata.context")
     public String getOdataContext() {
@@ -23,12 +23,12 @@ public class SubcategoryList implements Serializable {
     }
 
     @JsonProperty("value")
-    public List<SubcategoryData> getValue() {
+    public List<SubCategoryData> getValue() {
         return value;
     }
 
     @JsonProperty("value")
-    public void setValue(List<SubcategoryData> value) {
+    public void setValue(List<SubCategoryData> value) {
         this.value = value;
     }
 

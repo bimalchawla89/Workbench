@@ -9,16 +9,16 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
+import architecturedemo.pkg.arun.retail.data.models.SubCategoryData;
 import architecturedemo.pkg.arun.retail.databinding.RowSubCategoriesListBinding;
 
 public class SubCategoriesListAdapter extends BaseAdapter {
 
-    private ArrayList<SubcategoryData> mSubCategoriesList;
+    private ArrayList<SubCategoryData> mSubCategoriesList;
     private final SubCategoryViewModel mSubCategoryViewModel;
 
-    public SubCategoriesListAdapter(ArrayList<SubcategoryData> subcategoryData, SubCategoryViewModel mSubCategoryViewModel) {
-        this.mSubCategoriesList = subcategoryData;
+    public SubCategoriesListAdapter(ArrayList<SubCategoryData> subCategoryData, SubCategoryViewModel mSubCategoryViewModel) {
+        this.mSubCategoriesList = subCategoryData;
         this.mSubCategoryViewModel = mSubCategoryViewModel;
     }
 
@@ -28,7 +28,7 @@ public class SubCategoriesListAdapter extends BaseAdapter {
     }
 
     @Override
-    public SubcategoryData getItem(int i) {
+    public SubCategoryData getItem(int i) {
         return mSubCategoriesList.get(i);
     }
 
@@ -49,7 +49,7 @@ public class SubCategoriesListAdapter extends BaseAdapter {
 
         SubCategoryItemClickListener categoryItemClickListener = new SubCategoryItemClickListener() {
             @Override
-            public void onSubCategoryClicked(SubcategoryData subcategoryData) {
+            public void onSubCategoryClicked(SubCategoryData subcategoryData) {
                 mSubCategoryViewModel.getOpenSubCategoryEvent().setValue(subcategoryData.getTitle());
             }
         };
@@ -61,7 +61,7 @@ public class SubCategoriesListAdapter extends BaseAdapter {
         return subCategoriesListBinding.getRoot();
     }
 
-    public void updateSubCategoriesList(List<SubcategoryData> categoryDataList) {
+    public void updateSubCategoriesList(List<SubCategoryData> categoryDataList) {
         mSubCategoriesList = new ArrayList<>(categoryDataList);
         notifyDataSetChanged();
     }

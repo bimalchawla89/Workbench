@@ -7,17 +7,23 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
+import architecturedemo.pkg.arun.retail.data.models.SubCategoryData;
 
 @Dao
 public interface SubCategoryDao {
 
-    @Query("SELECT * FROM subCategoryData")
-    List<SubcategoryData> getAllSubCategoriesData();
+    @Query("SELECT * FROM SubCategoryData")
+    List<SubCategoryData> getAllSubCategoriesData();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSubCategory(SubcategoryData categoryData);
+    void insertSubCategory(SubCategoryData categoryData);
 
-    @Query("SELECT * FROM subCategoryData WHERE id = :categoryId")
-    List<SubcategoryData> getAllSubCategoriesData(String categoryId);
+    @Query("SELECT * FROM SubCategoryData WHERE id = :categoryId")
+    List<SubCategoryData> getAllSubCategoriesData(String categoryId);
+
+    @Query("DELETE FROM SubCategoryData WHERE id = :id")
+    int deleteSubCategoryById(String id);
+
+    @Query("SELECT * FROM SubCategoryData where id = :id")
+    SubCategoryData getSubCategoryWithId(String id);
 }

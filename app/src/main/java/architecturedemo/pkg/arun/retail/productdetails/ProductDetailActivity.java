@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail;
+package architecturedemo.pkg.arun.retail.productdetails;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import architecturedemo.pkg.arun.retail.R;
+import architecturedemo.pkg.arun.retail.ViewModelFactory;
 import architecturedemo.pkg.arun.retail.databinding.ActivityProductDetailBinding;
 import architecturedemo.pkg.arun.retail.productdetails.AddToCartActionListener;
 import architecturedemo.pkg.arun.retail.productdetails.ProductDetailViewModel;

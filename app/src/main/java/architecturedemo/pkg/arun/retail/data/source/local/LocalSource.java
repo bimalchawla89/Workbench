@@ -9,7 +9,7 @@ import architecturedemo.pkg.arun.retail.data.models.CategoryData;
 import architecturedemo.pkg.arun.retail.data.models.CategoryList;
 import architecturedemo.pkg.arun.retail.data.models.ProductData;
 import architecturedemo.pkg.arun.retail.data.models.ProductList;
-import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
+import architecturedemo.pkg.arun.retail.data.models.SubCategoryData;
 import architecturedemo.pkg.arun.retail.data.models.SubcategoryList;
 import architecturedemo.pkg.arun.retail.data.source.AppDataSource;
 import architecturedemo.pkg.arun.retail.util.AppExecutors;
@@ -112,7 +112,7 @@ public class LocalSource implements AppDataSource {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                final List<SubcategoryData> subCategoryDataList = mSubCategoriesDao.getAllSubCategoriesData(categoryId);
+                final List<SubCategoryData> subCategoryDataList = mSubCategoriesDao.getAllSubCategoriesData(categoryId);
                 mAppExecutors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {

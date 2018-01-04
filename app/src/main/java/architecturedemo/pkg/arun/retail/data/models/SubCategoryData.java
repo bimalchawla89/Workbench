@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 @Entity(tableName = "subCategoryData")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SubcategoryData implements Serializable {
+public class SubCategoryData implements Serializable {
 
     @PrimaryKey
     @NonNull
@@ -32,6 +32,13 @@ public class SubcategoryData implements Serializable {
     @ColumnInfo(name = "parent")
     @JsonProperty("parent")
     private String parent;
+
+    public SubCategoryData(@NonNull String id, String title, String description, String parent) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.parent = parent;
+    }
 
     @JsonProperty("id")
     public String getId() {

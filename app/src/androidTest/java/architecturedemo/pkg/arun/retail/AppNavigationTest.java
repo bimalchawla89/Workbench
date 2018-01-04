@@ -59,7 +59,7 @@ public class AppNavigationTest {
     public void clickOnProductsNavigationItem_ShowCartScreen() {
         openProductsScreen();
 
-        onView(withId(R.id.lv_products)).check(matches(isDisplayed()));
+        onView(withId(R.id.lv_categories)).check(matches(isDisplayed()));
     }
 
     private void openCartScreen() {

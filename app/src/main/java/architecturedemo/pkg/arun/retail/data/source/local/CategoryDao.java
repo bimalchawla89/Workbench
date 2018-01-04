@@ -33,4 +33,10 @@ public interface CategoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCategory(CategoryData categoryData);
+
+    @Query("SELECT * FROM categoryData where id = :id")
+    CategoryData getCategoryWithId(String id);
+
+    @Query("DELETE FROM categoryData WHERE id = :id")
+    int deleteCategoryById(String id);
 }

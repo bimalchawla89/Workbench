@@ -5,7 +5,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
+import architecturedemo.pkg.arun.retail.data.models.SubCategoryData;
 
 /**
  * Created by apple on 04/01/18.
@@ -13,8 +13,8 @@ import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
 
 public class SubCategoriesListBindings {
     @SuppressWarnings("unchecked")
-    @BindingAdapter("app:subcategoryDataList")
-    public static void setSubCategories(ListView listView, List<SubcategoryData> items) {
+    @BindingAdapter("app:subCategoryDataList")
+    public static void setSubCategories(ListView listView, List<SubCategoryData> items) {
         SubCategoriesListAdapter adapter = (SubCategoriesListAdapter) listView.getAdapter();
         if (adapter != null) {
             adapter.updateSubCategoriesList(items);

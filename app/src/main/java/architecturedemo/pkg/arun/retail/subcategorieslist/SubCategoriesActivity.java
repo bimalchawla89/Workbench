@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail;
+package architecturedemo.pkg.arun.retail.subcategorieslist;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,11 +14,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import architecturedemo.pkg.arun.retail.data.models.CategoryData;
-import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
+import architecturedemo.pkg.arun.retail.productslist.ProductsActivity;
+import architecturedemo.pkg.arun.retail.R;
+import architecturedemo.pkg.arun.retail.ViewModelFactory;
+import architecturedemo.pkg.arun.retail.data.models.SubCategoryData;
 import architecturedemo.pkg.arun.retail.databinding.ActivitySubCategoriesBinding;
-import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoriesListAdapter;
-import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoryViewModel;
 
 public class SubCategoriesActivity extends AppCompatActivity {
 
@@ -93,7 +93,7 @@ public class SubCategoriesActivity extends AppCompatActivity {
         ListView categoryListView =  activitySubCategoriesBinding.lvSubCategories;
 
         mListAdapter = new SubCategoriesListAdapter(
-                new ArrayList<SubcategoryData>(0),
+                new ArrayList<SubCategoryData>(0),
                 mSubCategoryViewModel
         );
         categoryListView.setAdapter(mListAdapter);

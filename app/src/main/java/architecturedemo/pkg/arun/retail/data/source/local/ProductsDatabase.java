@@ -7,13 +7,13 @@ import android.content.Context;
 
 import architecturedemo.pkg.arun.retail.data.models.CategoryData;
 import architecturedemo.pkg.arun.retail.data.models.ProductData;
-import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
+import architecturedemo.pkg.arun.retail.data.models.SubCategoryData;
 
 /**
  * Created by Arun.Kumar04 on 12/22/2017.
  */
 
-@Database(entities = {ProductData.class, CategoryData.class, SubcategoryData.class}, version = 1)
+@Database(entities = {ProductData.class, CategoryData.class, SubCategoryData.class}, version = 1)
 public abstract class ProductsDatabase extends RoomDatabase {
     private static ProductsDatabase INSTANCE = null;
 

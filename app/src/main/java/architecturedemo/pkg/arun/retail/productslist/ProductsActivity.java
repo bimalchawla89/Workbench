@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail;
+package architecturedemo.pkg.arun.retail.productslist;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,14 +14,13 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import architecturedemo.pkg.arun.retail.R;
+import architecturedemo.pkg.arun.retail.ViewModelFactory;
 import architecturedemo.pkg.arun.retail.data.models.ProductData;
-import architecturedemo.pkg.arun.retail.data.models.SubcategoryData;
 import architecturedemo.pkg.arun.retail.databinding.ActivityProductsBinding;
-import architecturedemo.pkg.arun.retail.databinding.ActivitySubCategoriesBinding;
+import architecturedemo.pkg.arun.retail.productdetails.ProductDetailActivity;
 import architecturedemo.pkg.arun.retail.productslist.ProductViewModel;
 import architecturedemo.pkg.arun.retail.productslist.ProductsListAdapter;
-import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoriesListAdapter;
-import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoryViewModel;
 
 public class ProductsActivity extends AppCompatActivity {
 

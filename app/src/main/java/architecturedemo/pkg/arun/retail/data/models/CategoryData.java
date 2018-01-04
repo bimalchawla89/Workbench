@@ -29,6 +29,12 @@ public class CategoryData implements Serializable {
     @JsonProperty("description")
     private String description;
 
+    public CategoryData(@NonNull String id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
     @JsonProperty("id")
     public String getId() {
         return id;

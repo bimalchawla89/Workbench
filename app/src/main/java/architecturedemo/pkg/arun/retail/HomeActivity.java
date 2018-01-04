@@ -25,6 +25,7 @@ import architecturedemo.pkg.arun.retail.fragments.CartFragment;
 import architecturedemo.pkg.arun.retail.fragments.LogoutFragment;
 import architecturedemo.pkg.arun.retail.fragments.ProfileFragment;
 import architecturedemo.pkg.arun.retail.fragments.PushFragment;
+import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoriesActivity;
 import architecturedemo.pkg.arun.retail.util.ActivityUtils;
 
 public class HomeActivity extends AppCompatActivity implements CartFragment.OnFragmentInteractionListener,
