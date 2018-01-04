@@ -23,7 +23,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.VisibleForTesting;
 
 import architecturedemo.pkg.arun.retail.data.source.ProductsRepository;
-import architecturedemo.pkg.arun.retail.productslist.ProductDetailViewModel;
+import architecturedemo.pkg.arun.retail.productdetails.ProductDetailViewModel;
 import architecturedemo.pkg.arun.retail.productslist.ProductViewModel;
 import architecturedemo.pkg.arun.retail.util.Injection;
 

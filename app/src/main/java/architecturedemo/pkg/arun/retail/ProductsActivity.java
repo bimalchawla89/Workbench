@@ -11,8 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import architecturedemo.pkg.arun.retail.productslist.ProductDetailFragment;
-import architecturedemo.pkg.arun.retail.productslist.ProductDetailViewModel;
+import architecturedemo.pkg.arun.retail.productdetails.ProductDetailFragment;
+import architecturedemo.pkg.arun.retail.productdetails.ProductDetailViewModel;
 import architecturedemo.pkg.arun.retail.util.ActivityUtils;
 
 public class ProductsActivity extends AppCompatActivity {

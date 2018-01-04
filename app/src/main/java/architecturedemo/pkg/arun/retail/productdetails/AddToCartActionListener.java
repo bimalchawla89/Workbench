@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail.productslist;
+package architecturedemo.pkg.arun.retail.productdetails;
 
 
 public interface AddToCartActionListener {

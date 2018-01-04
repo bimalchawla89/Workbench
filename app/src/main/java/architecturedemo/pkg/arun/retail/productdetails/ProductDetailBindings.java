@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail.productslist;
+package architecturedemo.pkg.arun.retail.productdetails;
 
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;

@@ -20,7 +20,6 @@ package architecturedemo.pkg.arun.retail.di.module;
 import javax.inject.Singleton;
 
 import architecturedemo.pkg.arun.networkinglib.NetworkInit;
-import architecturedemo.pkg.arun.networkinglib.NetworkLibs;
 import architecturedemo.pkg.arun.retail.MyApplication;
 import architecturedemo.pkg.arun.retail.data.source.remote.RemoteServices;
 import dagger.Module;
@@ -31,8 +30,7 @@ public class ApiModule {
 
     private static final String TAG = ApiModule.class.getSimpleName();
     private MyApplication app;
-        private static final String BASE_URL = "https://adventure-works-search2.search.windows.net";
-
+    private static final String BASE_URL = "https://adventure-works-search2.search.windows.net";
 
     public ApiModule(MyApplication app) {
         this.app = app;
@@ -41,7 +39,7 @@ public class ApiModule {
     @Provides
     @Singleton
     public RemoteServices remoteServices() {
-        NetworkInit networkInit = NetworkInit.getInstance(app, NetworkLibs.RETROFIT, BASE_URL, RemoteServices.class);
+        NetworkInit networkInit = NetworkInit.getInstance(app, BASE_URL, RemoteServices.class);
         return (RemoteServices) networkInit.initNetworkLib();
     }
 }
