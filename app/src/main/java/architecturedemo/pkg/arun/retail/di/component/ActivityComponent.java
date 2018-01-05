@@ -19,11 +19,14 @@ package architecturedemo.pkg.arun.retail.di.component;
 
 
 import architecturedemo.pkg.arun.retail.di.scope.ActivityScope;
+import architecturedemo.pkg.arun.retail.login.LoginActivity;
+import architecturedemo.pkg.arun.retail.login.SplashActivity;
 import dagger.Component;
 
 
 @ActivityScope
 @Component(dependencies = AppComponent.class)
 public interface ActivityComponent extends AppComponent {
+    void inject(LoginActivity loginActivity);
 
 }

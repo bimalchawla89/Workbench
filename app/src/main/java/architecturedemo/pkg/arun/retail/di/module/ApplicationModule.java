@@ -17,8 +17,12 @@
 
 package architecturedemo.pkg.arun.retail.di.module;
 
+import javax.inject.Singleton;
+
 import architecturedemo.pkg.arun.retail.MyApplication;
+import architecturedemo.pkg.arun.retail.util.LoginUtil;
 import dagger.Module;
+import dagger.Provides;
 
 
 @Module
@@ -29,10 +33,9 @@ public class ApplicationModule {
     public ApplicationModule(MyApplication app) {
         mApp = app;
     }
-
-//    @Provides
-//    @Singleton
-//    public Context appContext() {
-//        return mApp;
-//    }
+    @Provides
+    @Singleton
+    public LoginUtil loginUtil() {
+        return new LoginUtil(mApp.getAppComponent());
+    }
 }

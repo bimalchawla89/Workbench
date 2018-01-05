@@ -23,6 +23,8 @@ import architecturedemo.pkg.arun.retail.data.source.remote.RemoteServices;
 import architecturedemo.pkg.arun.retail.data.source.remote.RemoteSource;
 import architecturedemo.pkg.arun.retail.di.module.ApiModule;
 import architecturedemo.pkg.arun.retail.di.module.ApplicationModule;
+import architecturedemo.pkg.arun.retail.login.LoginActivity;
+import architecturedemo.pkg.arun.retail.util.LoginUtil;
 import dagger.Component;
 
 
@@ -31,7 +33,12 @@ import dagger.Component;
 public interface AppComponent {
     RemoteServices remoteServices();
 
-//    Context appContext();
+    LoginUtil LoginUtil();
+
+
+    void inject(LoginActivity loginActivity);
 
     void inject(RemoteSource remoteSource);
+
+    void inject(LoginUtil loginUtil);
 }

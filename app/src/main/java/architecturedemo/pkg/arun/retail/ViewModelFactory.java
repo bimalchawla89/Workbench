@@ -24,6 +24,7 @@ import android.support.annotation.VisibleForTesting;
 
 import architecturedemo.pkg.arun.retail.categorieslist.CategoryViewModel;
 import architecturedemo.pkg.arun.retail.data.source.AppRepository;
+import architecturedemo.pkg.arun.retail.login.SplashViewModel;
 import architecturedemo.pkg.arun.retail.productdetails.ProductDetailViewModel;
 import architecturedemo.pkg.arun.retail.productslist.ProductViewModel;
 import architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoryViewModel;
@@ -75,6 +76,9 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         else if (modelClass.isAssignableFrom(ProductDetailViewModel.class)) {
             //noinspection unchecked
             return (T) new ProductDetailViewModel(mApplication, mProductsRepository);
+        }else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
+            //noinspection unchecked
+            return (T) new SplashViewModel(mApplication);
         }
         else if (modelClass.isAssignableFrom(CategoryViewModel.class)) {
             //noinspection unchecked
