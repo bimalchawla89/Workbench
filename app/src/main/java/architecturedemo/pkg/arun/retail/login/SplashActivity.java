@@ -46,17 +46,14 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         });
-        // Subscribe to "open task" event
+
+        // Subscribe to login event
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 mViewModel.checkForLogin();
-
-
             }
         }, 2000);
-
     }
 
     private SplashViewModel obtainViewModel(AppCompatActivity activity) {

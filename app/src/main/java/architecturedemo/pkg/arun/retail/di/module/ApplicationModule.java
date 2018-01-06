@@ -33,9 +33,10 @@ public class ApplicationModule {
     public ApplicationModule(MyApplication app) {
         mApp = app;
     }
+
     @Provides
     @Singleton
     public LoginUtil loginUtil() {
-        return new LoginUtil(mApp.getAppComponent());
+        return new LoginUtil(mApp.getApplicationContext());
     }
 }

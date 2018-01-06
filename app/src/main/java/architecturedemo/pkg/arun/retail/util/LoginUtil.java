@@ -13,20 +13,14 @@ import com.google.android.gms.tasks.Task;
 
 import architecturedemo.pkg.arun.retail.R;
 import architecturedemo.pkg.arun.retail.constants.Constants;
-import architecturedemo.pkg.arun.retail.di.component.AppComponent;
 
 public class LoginUtil {
 
-    public LoginUtil(AppComponent appComponent) {
-        appComponent.inject(this);
-    }
-
-
     private GoogleSignInClient mGoogleSignInClient;
 
-    public void initializeGoogleSignInOptions(Context context) {
+    public LoginUtil(Context context) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(context.getString(R.string.default_web_client_id))
+                .requestIdToken(context.getString(R.string.wb_web_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(context, gso);
