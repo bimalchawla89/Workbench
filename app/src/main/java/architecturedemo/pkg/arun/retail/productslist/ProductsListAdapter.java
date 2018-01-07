@@ -1,10 +1,13 @@
 package architecturedemo.pkg.arun.retail.productslist;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +18,12 @@ import architecturedemo.pkg.arun.retail.databinding.RowProductsListBinding;
 
 public class ProductsListAdapter extends BaseAdapter {
 
+    private Context mContext;
     private ArrayList<ProductData> mProductsList;
     private final ProductViewModel mProductViewModel;
 
-    public ProductsListAdapter(ArrayList<ProductData> products, ProductViewModel mProductViewModel) {
+    public ProductsListAdapter(Context context, ArrayList<ProductData> products, ProductViewModel mProductViewModel) {
+        mContext = context;
         this.mProductsList = products;
         this.mProductViewModel = mProductViewModel;
     }
@@ -54,6 +59,9 @@ public class ProductsListAdapter extends BaseAdapter {
                 mProductViewModel.getOpenProductEvent().setValue(productData.getId());
             }
         };
+
+//        Picasso.with(mContext).load(mProductsList.get(i).getImageDomain() + mProductsList.get(i).getImageSuffix())
+//                .into(productsListBinding.imageViewProduct);
 
         productsListBinding.setListener(userActionsListener);
         productsListBinding.setProduct(mProductsList.get(i));

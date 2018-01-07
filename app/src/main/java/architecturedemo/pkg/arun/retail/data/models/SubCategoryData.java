@@ -33,6 +33,10 @@ public class SubCategoryData implements Serializable {
     @JsonProperty("parent")
     private String parent;
 
+    public SubCategoryData() {
+        // Empty constructor
+    }
+
     public SubCategoryData(@NonNull String id, String title, String description, String parent) {
         this.id = id;
         this.title = title;

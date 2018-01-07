@@ -93,9 +93,9 @@ public class ProductsActivity extends AppCompatActivity {
     }
 
     private void setupListAdapter(ActivityProductsBinding activityProductsBinding) {
-        ListView categoryListView =  activityProductsBinding.lvProducts;
+        ListView categoryListView = activityProductsBinding.lvProducts;
 
-        mListAdapter = new ProductsListAdapter(
+        mListAdapter = new ProductsListAdapter(this,
                 new ArrayList<ProductData>(0),
                 mProductViewModel
         );

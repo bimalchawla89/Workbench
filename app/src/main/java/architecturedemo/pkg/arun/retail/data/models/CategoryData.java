@@ -29,6 +29,10 @@ public class CategoryData implements Serializable {
     @JsonProperty("description")
     private String description;
 
+    public CategoryData() {
+        // Empty constructor
+    }
+
     public CategoryData(@NonNull String id, String title, String description) {
         this.id = id;
         this.title = title;
