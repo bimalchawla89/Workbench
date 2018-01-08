@@ -29,8 +29,8 @@ public class ProductDetailViewModel extends AndroidViewModel {
         mAppRepository = repository;
     }
 
-    public void getProductData(String productId) {
-        mAppRepository.getProductData(mContext, productId, new AppDataSource.GetProductDataCallback() {
+    public void getProductDetails(String productId) {
+        mAppRepository.getProductDetails(mContext, productId, new AppDataSource.GetProductDataCallback() {
 
             @Override
             public void onProductDataLoaded(ProductData productData) {

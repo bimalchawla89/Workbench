@@ -39,34 +39,12 @@ public class LocalSource implements AppDataSource {
         }
     }
 
-//    private void insertDummyData() {
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                mAppExecutors.diskIO().execute(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        List<Product> productList = mProductsDao.getAllProducts();
-//                        if (null == productList || productList.isEmpty()) {
-//                            for (int i = 0; i < 20; i++) {
-//                                Product product = new Product("" + (i + 1), "Product " + (i + 1), "description " + (i + 1), "");
-//                                mProductsDao.insertProduct(product);
-//                            }
-//                        }
-//                    }
-//                });
-//            }
-//        };
-//        mAppExecutors.diskIO().execute(runnable);
-//
-//    }
-
     @Override
-    public void getProductsList(@NonNull final Context context, final String productId, @NonNull final GetProductsCallback productsCallback) {
+    public void getProductsListFromSubCategory(@NonNull final Context context, final String subCategory, @NonNull final GetProductsCallback productsCallback) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                final List<ProductData> productList = mProductsDao.getAllProductsDataById(productId);
+                final List<ProductData> productList = mProductsDao.getAllProductsDataBySubCategory(subCategory);
                 mAppExecutors.mainThread().execute(new Runnable() {
                     @Override
                     public void run() {
@@ -132,7 +110,7 @@ public class LocalSource implements AppDataSource {
 
 
     @Override
-    public void getProductData(@NonNull final Context context, final String productId, @NonNull final GetProductDataCallback productsCallback) {
+    public void getProductDetails(@NonNull final Context context, final String productId, @NonNull final GetProductDataCallback productsCallback) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {

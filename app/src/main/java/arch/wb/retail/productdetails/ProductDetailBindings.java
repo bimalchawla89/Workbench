@@ -11,9 +11,13 @@ public class ProductDetailBindings {
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
+        if (null != imageUrl && !imageUrl.startsWith("http")) {
+            imageUrl = "http://" + imageUrl;
+        }
+
         Picasso.with(view.getContext())
                 .load(imageUrl)
-                .placeholder(R.drawable.ic_drawer)
+                .error(R.drawable.ic_launcher_background)
                 .into(view);
     }
 }

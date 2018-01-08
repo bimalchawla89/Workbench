@@ -26,7 +26,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         ActivityProductDetailBinding activityProductsBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail);
         mDetailViewModel = obtainViewModel(this);
-        mDetailViewModel.getProductData(getIntent().getStringExtra(EXTRA_PRODUCT_ID));
+        mDetailViewModel.getProductDetails(getIntent().getStringExtra(EXTRA_PRODUCT_ID));
         activityProductsBinding.setModel(mDetailViewModel);
 
 

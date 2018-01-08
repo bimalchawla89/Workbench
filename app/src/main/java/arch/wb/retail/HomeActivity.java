@@ -19,18 +19,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import arch.wb.retail.categorieslist.CategoriesFragment;
 import arch.wb.retail.categorieslist.CategoryViewModel;
 import arch.wb.retail.fragments.CartFragment;
-import arch.wb.retail.fragments.LogoutFragment;
 import arch.wb.retail.fragments.ProfileFragment;
 import arch.wb.retail.fragments.PushFragment;
+import arch.wb.retail.login.LoginActivity;
 import arch.wb.retail.subcategorieslist.SubCategoriesActivity;
 import arch.wb.retail.util.ActivityUtils;
 
 public class HomeActivity extends AppCompatActivity implements CartFragment.OnFragmentInteractionListener,
-        ProfileFragment.OnFragmentInteractionListener,
-        PushFragment.OnFragmentInteractionListener, LogoutFragment.OnFragmentInteractionListener {
+        ProfileFragment.OnFragmentInteractionListener, PushFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -150,8 +151,8 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
                 fragment = new PushFragment();
                 break;
             case 4:
-                fragment = new LogoutFragment();
-                break;
+                logout();
+                return;
         }
 
         args.putInt("param1", position);
@@ -198,6 +199,13 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
             return;
         }
         finish();
+    }
+
+    private void logout() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 //    @Override

@@ -41,13 +41,13 @@ public interface AppDataSource {
 
     void getToken(GetTokenCallback getTokenCallback);
 
-    void getProductsList(Context context, String productId, GetProductsCallback getProductsCallback);
+    void getProductsListFromSubCategory(Context context, String subCategory, GetProductsCallback getProductsCallback);
 
     void getCategoriesList(Context context, GetCategoriesCallback getCategoriesCallback);
 
     void getSubCategoriesList(Context context, String categoryId, GetSubCategoriesCallback getCategoriesCallback);
 
-    void getProductData(Context context, String productId, GetProductDataCallback getProductsCallback);
+    void getProductDetails(Context context, String productId, GetProductDataCallback getProductsCallback);
 
     void saveProducts(ProductList productList);
 

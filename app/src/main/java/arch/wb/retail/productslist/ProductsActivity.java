@@ -23,7 +23,7 @@ import arch.wb.retail.productdetails.ProductDetailActivity;
 public class ProductsActivity extends AppCompatActivity {
 
 
-    public static final String EXTRA_PRODUCT_ID = "PRODUCT_ID";
+    public static final String EXTRA_SUB_CATEGORY = "SUB_CATEGORY";
     private ProductViewModel mProductViewModel;
     private ProductsListAdapter mListAdapter;
 
@@ -33,7 +33,7 @@ public class ProductsActivity extends AppCompatActivity {
 
         ActivityProductsBinding activitySubCategoriesBinding = DataBindingUtil.setContentView(this, R.layout.activity_products);
         mProductViewModel = obtainViewModel(this);
-        mProductViewModel.getAllProducts(getIntent().getStringExtra(EXTRA_PRODUCT_ID));
+        mProductViewModel.getAllProducts(getIntent().getStringExtra(EXTRA_SUB_CATEGORY));
 
         activitySubCategoriesBinding.setModel(mProductViewModel);
         activitySubCategoriesBinding.executePendingBindings();
@@ -51,9 +51,9 @@ public class ProductsActivity extends AppCompatActivity {
         setupListAdapter(activitySubCategoriesBinding);
     }
 
-    private void openProductDetails(String categoryId) {
+    private void openProductDetails(String productId) {
         Intent intent = new Intent(this, ProductDetailActivity.class);
-        intent.putExtra(ProductDetailActivity.EXTRA_PRODUCT_ID, categoryId);
+        intent.putExtra(ProductDetailActivity.EXTRA_PRODUCT_ID, productId);
         startActivity(intent);
     }
 

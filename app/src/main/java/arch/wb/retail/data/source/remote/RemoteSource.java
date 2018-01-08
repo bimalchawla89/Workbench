@@ -49,14 +49,14 @@ public class RemoteSource implements AppDataSource {
     }
 
     @Override
-    public void getProductsList(Context context, final String productId, final GetProductsCallback getProductsCallback) {
+    public void getProductsListFromSubCategory(Context context, final String subCategory, final GetProductsCallback getProductsCallback) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 mAppExecutors.networkIO().execute(new Runnable() {
                     @Override
                     public void run() {
-                        Call<ProductList> tokenModelCall = mRemoteServices.findProductsByTitle(PRODUCT_SUB_BASE_URL+productId, apiKey);
+                        Call<ProductList> tokenModelCall = mRemoteServices.findProductsByTitle(PRODUCT_SUB_BASE_URL + subCategory, apiKey);
                         tokenModelCall.enqueue(new Callback<ProductList>() {
                             @Override
                             public void onResponse(Call<ProductList> call, Response<ProductList> response) {
@@ -83,7 +83,7 @@ public class RemoteSource implements AppDataSource {
                 mAppExecutors.networkIO().execute(new Runnable() {
                     @Override
                     public void run() {
-                        Call<CategoryList> tokenModelCall = mRemoteServices.getCategories(CATEGORY_SUB_BASE_URL+" null", apiKey);
+                        Call<CategoryList> tokenModelCall = mRemoteServices.getCategories(CATEGORY_SUB_BASE_URL + " null", apiKey);
                         tokenModelCall.enqueue(new Callback<CategoryList>() {
                             @Override
                             public void onResponse(Call<CategoryList> call, Response<CategoryList> response) {
@@ -110,7 +110,7 @@ public class RemoteSource implements AppDataSource {
                 mAppExecutors.networkIO().execute(new Runnable() {
                     @Override
                     public void run() {
-                        Call<SubcategoryList> tokenModelCall = mRemoteServices.getSubCategories(CATEGORY_SUB_BASE_URL+" \'"+categoryId+"\'", apiKey);
+                        Call<SubcategoryList> tokenModelCall = mRemoteServices.getSubCategories(CATEGORY_SUB_BASE_URL + " \'" + categoryId + "\'", apiKey);
                         tokenModelCall.enqueue(new Callback<SubcategoryList>() {
                             @Override
                             public void onResponse(Call<SubcategoryList> call, Response<SubcategoryList> response) {
@@ -130,7 +130,7 @@ public class RemoteSource implements AppDataSource {
     }
 
     @Override
-    public void getProductData(Context context, String productId, GetProductDataCallback getProductsCallback) {
+    public void getProductDetails(Context context, String productId, GetProductDataCallback getProductsCallback) {
 
     }
 

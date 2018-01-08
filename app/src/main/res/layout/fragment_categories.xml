@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<data>
+    <data>
 
-    <import type="android.view.View" />
+        <import type="android.view.View" />
 
-    <variable
-        name="model"
-        type="arch.wb.retail.categorieslist.CategoryViewModel" />
+        <variable
+            name="model"
+            type="arch.wb.retail.categorieslist.CategoryViewModel" />
 
-</data>
+    </data>
 
 <ListView
     android:id="@+id/lv_categories"

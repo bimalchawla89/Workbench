@@ -52,7 +52,7 @@ public class SubCategoriesActivity extends AppCompatActivity {
 
     private void openSubCategory(String categoryId) {
         Intent intent = new Intent(this, ProductsActivity.class);
-        intent.putExtra(ProductsActivity.EXTRA_PRODUCT_ID, categoryId);
+        intent.putExtra(ProductsActivity.EXTRA_SUB_CATEGORY, categoryId);
         startActivity(intent);
     }
 

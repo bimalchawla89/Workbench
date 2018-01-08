@@ -44,6 +44,10 @@ public class ProductData implements Serializable {
     @ColumnInfo(name = "productAdded")
     @JsonProperty("productAdded")
     private boolean productAdded;
+    @Nullable
+    @ColumnInfo(name = "subcategory")
+    @JsonProperty("subcategory")
+    private String subCategory;
 
     @JsonProperty("id")
     public String getId() {
@@ -113,5 +117,15 @@ public class ProductData implements Serializable {
     @JsonProperty("productAdded")
     public void setProductAdded(@Nullable boolean productAdded) {
         this.productAdded = productAdded;
+    }
+
+    @JsonProperty("subcategory")
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    @JsonProperty("subcategory")
+    public void setSubCategory(@Nullable String subCategory) {
+        this.subCategory = subCategory;
     }
 }

@@ -38,8 +38,8 @@ public interface ProductsDao {
     @Query("SELECT * FROM productData")
     List<ProductData> getAllProductsData();
 
-    @Query("SELECT * FROM productData WHERE id = :productId")
-    List<ProductData> getAllProductsDataById(String productId);
+    @Query("SELECT * FROM productData WHERE subcategory = :subCategory")
+    List<ProductData> getAllProductsDataBySubCategory(String subCategory);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertProduct(ProductData productData);

@@ -28,8 +28,8 @@ public class AppRepository implements AppDataSource {
     }
 
     @Override
-    public void getProductsList(@NonNull Context context, String productId, GetProductsCallback callback) {
-        getProductsFromLocalSource(context, productId, callback);
+    public void getProductsListFromSubCategory(@NonNull Context context, String subCategory, GetProductsCallback callback) {
+        getProductsFromLocalSource(context, subCategory, callback);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class AppRepository implements AppDataSource {
     }
 
     @Override
-    public void getProductData(@NonNull Context context, String productId, GetProductDataCallback callback) {
+    public void getProductDetails(@NonNull Context context, String productId, GetProductDataCallback callback) {
         getProductDataFromLocalSource(context, productId, callback);
     }
 
@@ -67,12 +67,12 @@ public class AppRepository implements AppDataSource {
         mRemoteDataSource.getToken(getTokenCallback);
     }
 
-    private void getProductsFromLocalSource(@NonNull final Context context, final String productId, @NonNull final GetProductsCallback callback) {
-        mLocalDataSource.getProductsList(context, productId, new GetProductsCallback() {
+    private void getProductsFromLocalSource(@NonNull final Context context, final String subCategory, @NonNull final GetProductsCallback callback) {
+        mLocalDataSource.getProductsListFromSubCategory(context, subCategory, new GetProductsCallback() {
             @Override
             public void onProductsLoaded(ProductList productList) {
                 if (null == productList || null == productList.getValue() || productList.getValue().isEmpty()) {
-                    getProductsFromRemoteSource(context, productId, callback);
+                    getProductsFromRemoteSource(context, subCategory, callback);
                 } else {
                     callback.onProductsLoaded(productList);
                 }
@@ -80,7 +80,7 @@ public class AppRepository implements AppDataSource {
 
             @Override
             public void onFailure() {
-                getProductsFromRemoteSource(context, productId, callback);
+                getProductsFromRemoteSource(context, subCategory, callback);
             }
         });
     }
@@ -122,13 +122,13 @@ public class AppRepository implements AppDataSource {
     }
 
     private void getProductDataFromLocalSource(@NonNull final Context context, final String productId, @NonNull final GetProductDataCallback callback) {
-        mLocalDataSource.getProductData(context, productId, new GetProductDataCallback() {
+        mLocalDataSource.getProductDetails(context, productId, new GetProductDataCallback() {
             @Override
             public void onProductDataLoaded(ProductData productData) {
 //                if (null == productData) {
 //                    getProductsFromRemoteSource(context, callback);
 //                } else {
-                    callback.onProductDataLoaded(productData);
+                callback.onProductDataLoaded(productData);
 //                }
             }
 
@@ -166,8 +166,8 @@ public class AppRepository implements AppDataSource {
         getSubCategories(context, categoryId, callback);
     }
 
-    private void getProducts(@NonNull Context context, String productId, @NonNull final GetProductsCallback callback) {
-        mRemoteDataSource.getProductsList(context, productId, new GetProductsCallback() {
+    private void getProducts(@NonNull Context context, String subCategory, @NonNull final GetProductsCallback callback) {
+        mRemoteDataSource.getProductsListFromSubCategory(context, subCategory, new GetProductsCallback() {
             @Override
             public void onProductsLoaded(ProductList productList) {
                 saveProducts(productList);

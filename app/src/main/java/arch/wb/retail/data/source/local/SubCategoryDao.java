@@ -18,7 +18,7 @@ public interface SubCategoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSubCategory(SubCategoryData categoryData);
 
-    @Query("SELECT * FROM SubCategoryData WHERE id = :categoryId")
+    @Query("SELECT * FROM SubCategoryData WHERE parent = :categoryId")
     List<SubCategoryData> getAllSubCategoriesData(String categoryId);
 
     @Query("DELETE FROM SubCategoryData WHERE id = :id")

@@ -34,8 +34,8 @@ public class ProductViewModel extends AndroidViewModel {
 
     }
 
-    public void getAllProducts(String productId) {
-        mProductsRepository.getProductsList(mContext, productId, new AppDataSource.GetProductsCallback() {
+    public void getAllProducts(String subCategory) {
+        mProductsRepository.getProductsListFromSubCategory(mContext, subCategory, new AppDataSource.GetProductsCallback() {
 
             @Override
             public void onProductsLoaded(ProductList productList) {
