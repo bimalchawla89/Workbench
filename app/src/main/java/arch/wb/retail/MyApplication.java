@@ -11,9 +11,10 @@ import arch.wb.retail.di.module.ApplicationModule;
  * Created by Arun.Kumar04 on 12/28/2017.
  */
 
-public class MyApplication extends Application{
+public class MyApplication extends Application {
 
     private AppComponent mAppComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();

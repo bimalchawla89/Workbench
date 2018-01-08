@@ -19,9 +19,9 @@ package arch.wb.retail.di.module;
 
 import javax.inject.Singleton;
 
+import arch.wb.network.NetworkInit;
 import arch.wb.retail.MyApplication;
 import arch.wb.retail.data.source.remote.RemoteServices;
-import arch.wb.network.NetworkInit;
 import dagger.Module;
 import dagger.Provides;
 

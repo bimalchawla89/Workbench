@@ -18,7 +18,9 @@ public abstract class ProductsDatabase extends RoomDatabase {
     private static ProductsDatabase INSTANCE = null;
 
     public abstract ProductsDao productsDao();
+
     public abstract CategoryDao categoryDao();
+
     public abstract SubCategoryDao subCategoryDao();
 
     private static final Object lock = new Object();

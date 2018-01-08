@@ -2,9 +2,11 @@ package arch.wb.retail.productslist;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
+
+import java.util.List;
 
 import arch.wb.retail.data.models.ProductData;
 import arch.wb.retail.data.models.ProductList;
@@ -15,10 +17,9 @@ import arch.wb.retail.util.SingleLiveEvent;
 
 public class ProductViewModel extends AndroidViewModel {
 
-    public final ObservableList<ProductData> items = new ObservableArrayList<>();
+    public final MutableLiveData<List<ProductData>> productsList = new MutableLiveData<>();
     private final SingleLiveEvent<String> mOpenProductEvent = new SingleLiveEvent<>();
 
-    private final Context mContext;
     private final AppRepository mProductsRepository;
 
 
@@ -26,21 +27,15 @@ public class ProductViewModel extends AndroidViewModel {
             Application context,
             AppRepository repository) {
         super(context);
-        mContext = context.getApplicationContext(); // Force use of Application Context.
         mProductsRepository = repository;
     }
 
-    public void insertDummyData() {
-
-    }
-
-    public void getAllProducts(String subCategory) {
-        mProductsRepository.getProductsListFromSubCategory(mContext, subCategory, new AppDataSource.GetProductsCallback() {
+    public void getAllProducts(Context context, String subCategory) {
+        mProductsRepository.getProductsListFromSubCategory(context.getApplicationContext(), subCategory, new AppDataSource.GetProductsCallback() {
 
             @Override
             public void onProductsLoaded(ProductList productList) {
-                items.clear();
-                items.addAll(productList.getValue());
+                productsList.setValue(productList.getValue());
             }
 
             @Override
@@ -52,5 +47,9 @@ public class ProductViewModel extends AndroidViewModel {
 
     public SingleLiveEvent<String> getOpenProductEvent() {
         return mOpenProductEvent;
+    }
+
+    public LiveData<List<ProductData>> getProductsData() {
+        return productsList;
     }
 }

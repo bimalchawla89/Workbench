@@ -72,15 +72,13 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         if (modelClass.isAssignableFrom(ProductViewModel.class)) {
             //noinspection unchecked
             return (T) new ProductViewModel(mApplication, mProductsRepository);
-        }
-        else if (modelClass.isAssignableFrom(ProductDetailViewModel.class)) {
+        } else if (modelClass.isAssignableFrom(ProductDetailViewModel.class)) {
             //noinspection unchecked
             return (T) new ProductDetailViewModel(mApplication, mProductsRepository);
-        }else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
+        } else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
             //noinspection unchecked
             return (T) new SplashViewModel(mApplication);
-        }
-        else if (modelClass.isAssignableFrom(CategoryViewModel.class)) {
+        } else if (modelClass.isAssignableFrom(CategoryViewModel.class)) {
             //noinspection unchecked
             return (T) new CategoryViewModel(mApplication, mProductsRepository);
         } else if (modelClass.isAssignableFrom(SubCategoryViewModel.class)) {

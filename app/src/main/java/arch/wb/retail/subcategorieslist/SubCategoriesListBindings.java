@@ -16,7 +16,7 @@ public class SubCategoriesListBindings {
     @BindingAdapter("app:subCategoryDataList")
     public static void setSubCategories(ListView listView, List<SubCategoryData> items) {
         SubCategoriesListAdapter adapter = (SubCategoriesListAdapter) listView.getAdapter();
-        if (adapter != null) {
+        if (adapter != null && null != items) {
             adapter.updateSubCategoriesList(items);
         }
     }

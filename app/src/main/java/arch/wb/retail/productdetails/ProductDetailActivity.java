@@ -24,9 +24,9 @@ public class ProductDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityProductDetailBinding activityProductsBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail);
+        final ActivityProductDetailBinding activityProductsBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail);
         mDetailViewModel = obtainViewModel(this);
-        mDetailViewModel.getProductDetails(getIntent().getStringExtra(EXTRA_PRODUCT_ID));
+        mDetailViewModel.getProductDetails(this, getIntent().getStringExtra(EXTRA_PRODUCT_ID));
         activityProductsBinding.setModel(mDetailViewModel);
 
 
@@ -53,7 +53,6 @@ public class ProductDetailActivity extends AppCompatActivity {
     public void addToCart() {
         mDetailViewModel.addedToCart.set(true);
         Toast.makeText(this, " added to cart  " + mDetailViewModel.addedToCart, Toast.LENGTH_SHORT).show();
-
     }
 
     public static ProductDetailViewModel obtainViewModel(FragmentActivity activity) {

@@ -125,7 +125,7 @@ public class AppRepository implements AppDataSource {
         mLocalDataSource.getProductDetails(context, productId, new GetProductDataCallback() {
             @Override
             public void onProductDataLoaded(ProductData productData) {
-//                if (null == productData) {
+//                if (null == productsList) {
 //                    getProductsFromRemoteSource(context, callback);
 //                } else {
                 callback.onProductDataLoaded(productData);

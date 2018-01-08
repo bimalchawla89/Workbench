@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import arch.wb.retail.R;
 import arch.wb.retail.ViewModelFactory;
@@ -32,7 +33,7 @@ public class SubCategoriesActivity extends AppCompatActivity {
 
         ActivitySubCategoriesBinding activitySubCategoriesBinding = DataBindingUtil.setContentView(this, R.layout.activity_sub_categories);
         mSubCategoryViewModel = obtainViewModel(this);
-        mSubCategoryViewModel.getAllSubCategories(getIntent().getStringExtra(EXTRA_CATEGORY_ID));
+        mSubCategoryViewModel.getAllSubCategories(this, getIntent().getStringExtra(EXTRA_CATEGORY_ID));
 
         activitySubCategoriesBinding.setModel(mSubCategoryViewModel);
         activitySubCategoriesBinding.executePendingBindings();
@@ -45,6 +46,13 @@ public class SubCategoriesActivity extends AppCompatActivity {
                 if (categoryId != null) {
                     openSubCategory(categoryId);
                 }
+            }
+        });
+
+        mSubCategoryViewModel.getSubCategoryData().observe(this, new Observer<List<SubCategoryData>>() {
+            @Override
+            public void onChanged(@Nullable List<SubCategoryData> subCategoryData) {
+                mListAdapter.updateSubCategoriesList(subCategoryData);
             }
         });
         setupListAdapter(activitySubCategoriesBinding);
@@ -90,7 +98,7 @@ public class SubCategoriesActivity extends AppCompatActivity {
     }
 
     private void setupListAdapter(ActivitySubCategoriesBinding activitySubCategoriesBinding) {
-        ListView categoryListView =  activitySubCategoriesBinding.lvSubCategories;
+        ListView categoryListView = activitySubCategoriesBinding.lvSubCategories;
 
         mListAdapter = new SubCategoriesListAdapter(
                 new ArrayList<SubCategoryData>(0),

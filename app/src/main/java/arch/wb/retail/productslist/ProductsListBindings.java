@@ -32,7 +32,7 @@ public class ProductsListBindings {
     @BindingAdapter("app:items")
     public static void setItems(ListView listView, List<ProductData> items) {
         ProductsListAdapter adapter = (ProductsListAdapter) listView.getAdapter();
-        if (adapter != null) {
+        if (adapter != null && null != items) {
             adapter.updateProductsList(items);
         }
     }

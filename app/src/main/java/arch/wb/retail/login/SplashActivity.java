@@ -29,13 +29,13 @@ public class SplashActivity extends AppCompatActivity {
                 .layout.activity_splash);
         activitySplashBinding.executePendingBindings();
         mViewModel = obtainViewModel(this);
-        // Subscribe to "open task" event
+        // Subscribe to "open productDetails" event
         mViewModel.checkForLoginEvent().observe(SplashActivity.this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean loginStatus) {
                 mViewModel.isLoggedIn.set(PreferenceRepository.getBoolean(SplashActivity.this,
                         Constants
-                        .IS_LOGGED_IN, false));
+                                .IS_LOGGED_IN, false));
                 Intent intent = null;
                 if (mViewModel.isLoggedIn.get()) {
                     intent = new Intent(SplashActivity.this, HomeActivity.class);

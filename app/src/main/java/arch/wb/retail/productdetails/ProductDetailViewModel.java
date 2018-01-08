@@ -13,28 +13,25 @@ import arch.wb.retail.util.SingleLiveEvent;
 
 public class ProductDetailViewModel extends AndroidViewModel {
 
-    public final ObservableField<ProductData> task = new ObservableField<>();
+    public final ObservableField<ProductData> productDetails = new ObservableField<>();
     public final ObservableBoolean addedToCart = new ObservableBoolean();
     private final SingleLiveEvent<Void> mAddToCartEvent = new SingleLiveEvent<>();
 
-    private final Context mContext;
     private final AppRepository mAppRepository;
-
 
     public ProductDetailViewModel(
             Application context,
             AppRepository repository) {
         super(context);
-        mContext = context.getApplicationContext(); // Force use of Application Context.
         mAppRepository = repository;
     }
 
-    public void getProductDetails(String productId) {
-        mAppRepository.getProductDetails(mContext, productId, new AppDataSource.GetProductDataCallback() {
+    public void getProductDetails(Context context, String productId) {
+        mAppRepository.getProductDetails(context, productId, new AppDataSource.GetProductDataCallback() {
 
             @Override
             public void onProductDataLoaded(ProductData productData) {
-                task.set(productData);
+                productDetails.set(productData);
             }
 
             @Override
