@@ -8,11 +8,11 @@
 
         <variable
             name="product"
-            type="architecturedemo.pkg.arun.retail.data.models.ProductData" />
+            type="arch.wb.retail.data.models.ProductData" />
 
         <variable
             name="listener"
-            type="architecturedemo.pkg.arun.retail.productslist.ProductItemActionsListener" />
+            type="arch.wb.retail.productslist.ProductItemActionsListener" />
 
     </data>
 

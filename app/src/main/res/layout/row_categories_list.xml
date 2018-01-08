@@ -7,11 +7,11 @@
 
         <variable
             name="category"
-            type="architecturedemo.pkg.arun.retail.data.models.CategoryData" />
+            type="arch.wb.retail.data.models.CategoryData" />
 
         <variable
             name="listener"
-            type="architecturedemo.pkg.arun.retail.categorieslist.CategoryItemClickListener" />
+            type="arch.wb.retail.categorieslist.CategoryItemClickListener" />
 
     </data>
 

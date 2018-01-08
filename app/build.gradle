@@ -6,7 +6,6 @@ android {
     defaultConfig {
         applicationId "arch.wb.retail"
         minSdkVersion 15
-        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

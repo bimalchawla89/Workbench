@@ -8,7 +8,7 @@
 
         <variable
             name="model"
-            type="architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoryViewModel" />
+            type="arch.wb.retail.subcategorieslist.SubCategoryViewModel" />
 
     </data>
 

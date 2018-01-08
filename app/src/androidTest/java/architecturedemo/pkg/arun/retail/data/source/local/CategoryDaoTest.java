@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail.data.source.local;
+package arch.wb.retail.data.source.local;
 
 import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import architecturedemo.pkg.arun.retail.data.models.CategoryData;
+import arch.wb.retail.data.models.CategoryData;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

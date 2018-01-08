@@ -9,11 +9,11 @@
 
         <variable
             name="model"
-            type="architecturedemo.pkg.arun.retail.productdetails.ProductDetailViewModel" />
+            type="arch.wb.retail.productdetails.ProductDetailViewModel" />
 
         <variable
             name="listener"
-            type="architecturedemo.pkg.arun.retail.productdetails.AddToCartActionListener" />
+            type="arch.wb.retail.productdetails.AddToCartActionListener" />
 
     </data>
 

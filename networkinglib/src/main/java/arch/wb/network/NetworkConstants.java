@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.networkinglib;
+package arch.wb.network;
 
 /**
  * Created by Arun.Kumar04 on 12/28/2017.

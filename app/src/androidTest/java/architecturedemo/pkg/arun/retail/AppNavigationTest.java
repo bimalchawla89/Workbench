@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail;
+package arch.wb.retail;
 
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
