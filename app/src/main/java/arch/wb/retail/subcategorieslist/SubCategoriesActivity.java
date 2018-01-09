@@ -26,6 +26,14 @@ public class SubCategoriesActivity extends AppCompatActivity {
     private SubCategoryViewModel mSubCategoryViewModel;
     private SubCategoriesListAdapter mListAdapter;
 
+    public static SubCategoryViewModel obtainViewModel(FragmentActivity activity) {
+        // Use a Factory to inject dependencies into the ViewModel
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+
+        return ViewModelProviders.of(activity, factory).get(SubCategoryViewModel.class);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +62,6 @@ public class SubCategoriesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ProductsActivity.class);
         intent.putExtra(ProductsActivity.EXTRA_SUB_CATEGORY, categoryId);
         startActivity(intent);
-    }
-
-    public static SubCategoryViewModel obtainViewModel(FragmentActivity activity) {
-        // Use a Factory to inject dependencies into the ViewModel
-        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-
-        return ViewModelProviders.of(activity, factory).get(SubCategoryViewModel.class);
-
     }
 
     private void setupToolbar() {

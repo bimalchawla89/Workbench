@@ -37,8 +37,8 @@
         android:id="@+id/lv_sub_categories"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:subCategoryDataList="@{model.subCategoryDataList}"
-        android:background="#aaaaaa"/>
+        android:background="#aaaaaa"
+        app:subCategoryDataList="@{model.subCategoryDataList}" />
 
     </LinearLayout>
 

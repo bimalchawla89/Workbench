@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail;
+package arch.wb.retail.productdetails;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,10 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import architecturedemo.pkg.arun.retail.databinding.ActivityProductDetailBinding;
-import architecturedemo.pkg.arun.retail.databinding.BottomSheetBinding;
-import architecturedemo.pkg.arun.retail.productdetails.AddToCartActionListener;
-import architecturedemo.pkg.arun.retail.productdetails.ProductDetailViewModel;
+import arch.wb.retail.R;
+import arch.wb.retail.ViewModelFactory;
+import arch.wb.retail.databinding.ActivityProductDetailBinding;
+import arch.wb.retail.databinding.BottomSheetBinding;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -39,8 +39,10 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityProductDetailBinding activityProductsBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail);
+        BottomSheetBinding bottomSheetBinding = BottomSheetBinding.inflate(getLayoutInflater());
+        sheetBehavior = BottomSheetBehavior.from(bottomSheetBinding.bottomSheet);
         mDetailViewModel = obtainViewModel(this);
-        mDetailViewModel.getProductData(getIntent().getStringExtra(EXTRA_PRODUCT_ID));
+        mDetailViewModel.getProductDetails(getIntent().getStringExtra(EXTRA_PRODUCT_ID));
         activityProductsBinding.setModel(mDetailViewModel);
 
 
@@ -49,20 +51,31 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onAddToCartClicked() {
                 mDetailViewModel.addToCart();
             }
+
+            @Override
+            public void onPaymentClicked() {
+                mDetailViewModel.doPayment();
+            }
         };
+
         activityProductsBinding.setListener(addToCartActionListener);
         activityProductsBinding.executePendingBindings();
 
-
         setupToolbar();
 
-        BottomSheetBinding bottomSheetBinding = BottomSheetBinding.inflate(getLayoutInflater());
-        sheetBehavior = BottomSheetBehavior.from(bottomSheetBinding.bottomSheet);
+
         // Subscribe to "add to cart" event
         mDetailViewModel.addToCartEvent().observe(this, new Observer<Void>() {
             @Override
             public void onChanged(@Nullable Void v) {
                 addToCart();
+            }
+        });
+
+        mDetailViewModel.paymentEvent().observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void v) {
+                doPayment();
             }
         });
 
@@ -104,7 +117,10 @@ public class ProductDetailActivity extends AppCompatActivity {
         } else {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
-        Toast.makeText(this, " added to cart  " + mDetailViewModel.addedToCart, Toast.LENGTH_SHORT).show();
+    }
+
+    private void doPayment() {
+        Toast.makeText(this, "Do payment", Toast.LENGTH_SHORT).show();
     }
 
     private void setupToolbar() {

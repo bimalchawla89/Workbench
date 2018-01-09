@@ -9,6 +9,22 @@ import arch.wb.retail.data.models.SubcategoryList;
 
 public interface AppDataSource {
 
+    void getToken(GetTokenCallback getTokenCallback);
+
+    void getProductsListFromSubCategory(Context context, String subCategory, GetProductsCallback getProductsCallback);
+
+    void getCategoriesList(Context context, GetCategoriesCallback getCategoriesCallback);
+
+    void getSubCategoriesList(Context context, String categoryId, GetSubCategoriesCallback getCategoriesCallback);
+
+    void getProductDetails(Context context, String productId, GetProductDataCallback getProductsCallback);
+
+    void saveProducts(ProductList productList);
+
+    void saveCategories(CategoryList categoryList);
+
+    void saveSubCategories(SubcategoryList subcategoryList);
+
     interface GetProductsCallback {
         void onProductsLoaded(ProductList productList);
 
@@ -38,20 +54,4 @@ public interface AppDataSource {
 
         void onFailure();
     }
-
-    void getToken(GetTokenCallback getTokenCallback);
-
-    void getProductsListFromSubCategory(Context context, String subCategory, GetProductsCallback getProductsCallback);
-
-    void getCategoriesList(Context context, GetCategoriesCallback getCategoriesCallback);
-
-    void getSubCategoriesList(Context context, String categoryId, GetSubCategoriesCallback getCategoriesCallback);
-
-    void getProductDetails(Context context, String productId, GetProductDataCallback getProductsCallback);
-
-    void saveProducts(ProductList productList);
-
-    void saveCategories(CategoryList categoryList);
-
-    void saveSubCategories(SubcategoryList subcategoryList);
 }

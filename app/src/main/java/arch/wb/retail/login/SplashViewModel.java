@@ -17,7 +17,7 @@ public class SplashViewModel extends AndroidViewModel {
     private final SingleLiveEvent<Boolean> loginCheckEvent = new SingleLiveEvent<>();
 
 
-    public SplashViewModel( Application context) {
+    public SplashViewModel(Application context) {
         super(context);
         mContext = context.getApplicationContext();
     }

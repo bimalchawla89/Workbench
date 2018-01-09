@@ -19,9 +19,9 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class NetworkInit {
     private static NetworkInit INSTANCE;
-    private Context context;
     private final String baseUrl;
     private final Class<?> apiServices;
+    private Context context;
 
     private NetworkInit(Context context, String baseUrl, Class<?> apiServices) {
         this.context = context;

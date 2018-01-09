@@ -19,9 +19,9 @@ package arch.wb.retail.di.module;
 
 import javax.inject.Singleton;
 
+import arch.wb.network.NetworkInit;
 import arch.wb.retail.MyApplication;
 import arch.wb.retail.data.source.remote.RemoteServices;
-import arch.wb.network.NetworkInit;
 import dagger.Module;
 import dagger.Provides;
 
@@ -29,8 +29,8 @@ import dagger.Provides;
 public class ApiModule {
 
     private static final String TAG = ApiModule.class.getSimpleName();
-    private MyApplication app;
     private static final String BASE_URL = "https://adventure-works-search2.search.windows.net";
+    private MyApplication app;
 
     public ApiModule(MyApplication app) {
         this.app = app;

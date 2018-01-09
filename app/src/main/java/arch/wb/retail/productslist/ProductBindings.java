@@ -1,7 +1,6 @@
 package arch.wb.retail.productslist;
 
 import android.databinding.BindingAdapter;
-import android.net.Uri;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;

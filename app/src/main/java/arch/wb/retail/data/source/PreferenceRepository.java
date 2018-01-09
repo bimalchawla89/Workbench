@@ -11,7 +11,7 @@ public class PreferenceRepository {
      * @return returns sharepreferences object
      */
     private static SharedPreferences getSharePreferences(Context context) {
-        return context.getSharedPreferences( Constants
+        return context.getSharedPreferences(Constants
                 .MY_PREFERENCES, Context
                 .MODE_PRIVATE);
     }
@@ -31,12 +31,12 @@ public class PreferenceRepository {
      * @param key   : key of the value to be saved
      * @param value : value to be saved
      */
-    public static void putBoolean(Context context,String key, boolean value) {
+    public static void putBoolean(Context context, String key, boolean value) {
         getPreferenceEditor(getSharePreferences(context)).putBoolean(key, value).apply();
     }
 
 
-    public static boolean getBoolean(Context context,String key, boolean defVal) {
+    public static boolean getBoolean(Context context, String key, boolean defVal) {
         return getSharePreferences(context).getBoolean(key, defVal);
     }
 }

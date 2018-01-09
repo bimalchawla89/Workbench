@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onChanged(@Nullable Boolean loginStatus) {
                 mViewModel.isLoggedIn.set(PreferenceRepository.getBoolean(SplashActivity.this,
                         Constants
-                        .IS_LOGGED_IN, false));
+                                .IS_LOGGED_IN, false));
                 Intent intent = null;
                 if (mViewModel.isLoggedIn.get()) {
                     intent = new Intent(SplashActivity.this, HomeActivity.class);

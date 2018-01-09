@@ -45,6 +45,11 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final AppRepository mProductsRepository;
 
+    private ViewModelFactory(Application application, AppRepository repository) {
+        mApplication = application;
+        mProductsRepository = repository;
+    }
+
     public static ViewModelFactory getInstance(Application application) {
         if (INSTANCE == null) {
             synchronized (ViewModelFactory.class) {
@@ -62,25 +67,18 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         INSTANCE = null;
     }
 
-    private ViewModelFactory(Application application, AppRepository repository) {
-        mApplication = application;
-        mProductsRepository = repository;
-    }
-
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (modelClass.isAssignableFrom(ProductViewModel.class)) {
             //noinspection unchecked
             return (T) new ProductViewModel(mApplication, mProductsRepository);
-        }
-        else if (modelClass.isAssignableFrom(ProductDetailViewModel.class)) {
+        } else if (modelClass.isAssignableFrom(ProductDetailViewModel.class)) {
             //noinspection unchecked
             return (T) new ProductDetailViewModel(mApplication, mProductsRepository);
-        }else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
+        } else if (modelClass.isAssignableFrom(SplashViewModel.class)) {
             //noinspection unchecked
             return (T) new SplashViewModel(mApplication);
-        }
-        else if (modelClass.isAssignableFrom(CategoryViewModel.class)) {
+        } else if (modelClass.isAssignableFrom(CategoryViewModel.class)) {
             //noinspection unchecked
             return (T) new CategoryViewModel(mApplication, mProductsRepository);
         } else if (modelClass.isAssignableFrom(SubCategoryViewModel.class)) {

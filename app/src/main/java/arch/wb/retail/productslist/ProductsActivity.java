@@ -27,6 +27,14 @@ public class ProductsActivity extends AppCompatActivity {
     private ProductViewModel mProductViewModel;
     private ProductsListAdapter mListAdapter;
 
+    public static ProductViewModel obtainViewModel(FragmentActivity activity) {
+        // Use a Factory to inject dependencies into the ViewModel
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+
+        return ViewModelProviders.of(activity, factory).get(ProductViewModel.class);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,14 +63,6 @@ public class ProductsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ProductDetailActivity.class);
         intent.putExtra(ProductDetailActivity.EXTRA_PRODUCT_ID, productId);
         startActivity(intent);
-    }
-
-    public static ProductViewModel obtainViewModel(FragmentActivity activity) {
-        // Use a Factory to inject dependencies into the ViewModel
-        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-
-        return ViewModelProviders.of(activity, factory).get(ProductViewModel.class);
-
     }
 
     private void setupToolbar() {

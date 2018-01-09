@@ -16,6 +16,7 @@ public class ProductDetailViewModel extends AndroidViewModel {
     public final ObservableField<ProductData> task = new ObservableField<>();
     public final ObservableBoolean addedToCart = new ObservableBoolean();
     private final SingleLiveEvent<Void> mAddToCartEvent = new SingleLiveEvent<>();
+    private final SingleLiveEvent<Void> mPaymentEvent = new SingleLiveEvent<>();
 
     private final Context mContext;
     private final AppRepository mAppRepository;
@@ -50,6 +51,14 @@ public class ProductDetailViewModel extends AndroidViewModel {
 
     public SingleLiveEvent<Void> addToCartEvent() {
         return mAddToCartEvent;
+    }
+
+    public void doPayment() {
+        mPaymentEvent.call();
+    }
+
+    public SingleLiveEvent<Void> paymentEvent() {
+        return mPaymentEvent;
     }
 
 }

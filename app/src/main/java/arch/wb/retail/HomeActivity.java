@@ -42,6 +42,16 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
     private Toolbar toolbar;
     private CategoryViewModel mViewModel;
 
+    public static CategoryViewModel obtainViewModel(FragmentActivity activity) {
+        // Use a Factory to inject dependencies into the ViewModel
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+
+        CategoryViewModel viewModel =
+                ViewModelProviders.of(activity, factory).get(CategoryViewModel.class);
+
+        return viewModel;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,16 +85,6 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
         intent.putExtra(SubCategoriesActivity.EXTRA_CATEGORY_ID, categoryId);
         startActivity(intent);
 
-    }
-
-    public static CategoryViewModel obtainViewModel(FragmentActivity activity) {
-        // Use a Factory to inject dependencies into the ViewModel
-        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-
-        CategoryViewModel viewModel =
-                ViewModelProviders.of(activity, factory).get(CategoryViewModel.class);
-
-        return viewModel;
     }
 
     private void setupToolbar() {
@@ -123,14 +123,6 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
     @Override
     public void onFragmentInteraction(Uri uri) {
 
-    }
-
-    /* The click listener for ListView in the navigation drawer */
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
     }
 
     private void selectItem(int position) {
@@ -206,6 +198,14 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    /* The click listener for ListView in the navigation drawer */
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
     }
 
 //    @Override

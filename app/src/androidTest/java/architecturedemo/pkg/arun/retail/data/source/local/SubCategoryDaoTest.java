@@ -24,9 +24,8 @@ import static org.hamcrest.Matchers.notNullValue;
 @RunWith(AndroidJUnit4.class)
 public class SubCategoryDaoTest {
 
-    private ProductsDatabase mProductsDatabase;
-
     private static final SubCategoryData SUB_CATEGORY = new SubCategoryData("id1", "title1", "description1", "parent1");
+    private ProductsDatabase mProductsDatabase;
 
     @Before
     public void initDatabase() {
