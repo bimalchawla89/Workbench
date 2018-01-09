@@ -86,12 +86,22 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:onClick="@{() -> listener.onAddToCartClicked()}"
-                            android:visibility="@{model.addedToCart ? View.GONE : View.VISIBLE}"
-                            android:text="@string/add_cart" />
+                            android:text="@string/add_cart"
+                            android:visibility="@{model.addedToCart ? View.GONE : View.VISIBLE}" />
 
                     </RelativeLayout>
 
+
                 </LinearLayout>
+                <!-- Adding bottom sheet after main content -->
+                <include
+                    android:id="@+id/bottom_sheet"
+                    layout="@layout/bottom_sheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:model="@{model}" />
+
 
             </android.support.design.widget.CoordinatorLayout>
 
