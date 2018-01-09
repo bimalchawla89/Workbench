@@ -31,7 +31,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
 
         return ViewModelProviders.of(activity, factory).get(ProductDetailViewModel.class);
-
     }
 
     @Override
