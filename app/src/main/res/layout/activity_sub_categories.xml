@@ -8,7 +8,7 @@
 
         <variable
             name="model"
-            type="architecturedemo.pkg.arun.retail.subcategorieslist.SubCategoryViewModel" />
+            type="arch.wb.retail.subcategorieslist.SubCategoryViewModel" />
 
     </data>
 
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".SubCategoriesActivity">
+        tools:context=".subcategorieslist.SubCategoriesActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
         android:id="@+id/lv_sub_categories"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:subcategoryDataList="@{model.subcategoryDataList}"
+        app:subCategoryDataList="@{model.subCategoryDataList}"
         android:background="#aaaaaa"/>
 
     </LinearLayout>

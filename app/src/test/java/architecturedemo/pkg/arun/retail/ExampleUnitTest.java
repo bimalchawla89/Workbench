@@ -1,4 +1,4 @@
-package architecturedemo.pkg.arun.retail;
+package arch.wb.retail;
 
 import org.junit.Test;
 

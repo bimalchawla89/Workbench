@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="architecturedemo.pkg.arun.retail">
+    package="arch.wb.retail">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -23,9 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProductDetailActivity" />
-        <activity android:name=".SubCategoriesActivity" />
-        <activity android:name=".ProductsActivity"></activity>
+        <activity android:name=".login.LoginActivity"/>
+        <!--<activity android:name=".HomeActivity"/>-->
+        <activity android:name=".productdetails.ProductDetailActivity" />
+        <activity android:name=".subcategorieslist.SubCategoriesActivity" />
+        <activity android:name=".productslist.ProductsActivity"></activity>
     </application>
 
 </manifest>

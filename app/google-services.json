@@ -1,0 +1,43 @@
+// Account used for generating json file : avonproject.chd@gmail.com
+{
+  "project_info": {
+    "project_number": "1085649710963",
+    "firebase_url": "https://infosys-workbench-app.firebaseio.com",
+    "project_id": "infosys-workbench-app",
+    "storage_bucket": "infosys-workbench-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085649710963:android:ec7e48d261093347",
+        "android_client_info": {
+          "package_name": "arch.wb.retail"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085649710963-rs6r7bvd8ojju06qqqp7pjf413rduv59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxRV906SBGAfoytYxWvseEXxaxwFWlO24"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
