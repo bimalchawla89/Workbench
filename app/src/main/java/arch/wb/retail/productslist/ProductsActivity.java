@@ -37,6 +37,7 @@ public class ProductsActivity extends AppCompatActivity {
         mProductViewModel.getAllProducts(this, getIntent().getStringExtra(EXTRA_SUB_CATEGORY));
 
         activitySubCategoriesBinding.setModel(mProductViewModel);
+        activitySubCategoriesBinding.setLifecycleOwner(this);
         activitySubCategoriesBinding.executePendingBindings();
 
         setupToolbar();
@@ -47,13 +48,6 @@ public class ProductsActivity extends AppCompatActivity {
                 if (categoryId != null) {
                     openProductDetails(categoryId);
                 }
-            }
-        });
-
-        mProductViewModel.getProductsData().observe(this, new Observer<List<ProductData>>() {
-            @Override
-            public void onChanged(@Nullable List<ProductData> productData) {
-                mListAdapter.updateProductsList(productData);
             }
         });
         setupListAdapter(activitySubCategoriesBinding);

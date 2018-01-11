@@ -37,6 +37,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         };
         activityProductsBinding.setListener(addToCartActionListener);
+        activityProductsBinding.setLifecycleOwner(this);
         activityProductsBinding.executePendingBindings();
 
         setupToolbar();

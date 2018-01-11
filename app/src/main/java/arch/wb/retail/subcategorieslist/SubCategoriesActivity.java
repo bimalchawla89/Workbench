@@ -36,6 +36,7 @@ public class SubCategoriesActivity extends AppCompatActivity {
         mSubCategoryViewModel.getAllSubCategories(this, getIntent().getStringExtra(EXTRA_CATEGORY_ID));
 
         activitySubCategoriesBinding.setModel(mSubCategoryViewModel);
+        activitySubCategoriesBinding.setLifecycleOwner(this);
         activitySubCategoriesBinding.executePendingBindings();
 
         setupToolbar();
@@ -49,12 +50,6 @@ public class SubCategoriesActivity extends AppCompatActivity {
             }
         });
 
-        mSubCategoryViewModel.getSubCategoryData().observe(this, new Observer<List<SubCategoryData>>() {
-            @Override
-            public void onChanged(@Nullable List<SubCategoryData> subCategoryData) {
-                mListAdapter.updateSubCategoriesList(subCategoryData);
-            }
-        });
         setupListAdapter(activitySubCategoriesBinding);
     }
 

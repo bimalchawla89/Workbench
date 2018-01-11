@@ -1,5 +1,6 @@
 package arch.wb.retail.productslist;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
@@ -63,6 +64,7 @@ public class ProductsListAdapter extends BaseAdapter {
 
         productsListBinding.setListener(userActionsListener);
         productsListBinding.setProduct(mProductsList.get(i));
+        productsListBinding.setLifecycleOwner((ProductsActivity)mContext);
         productsListBinding.executePendingBindings();
 
         return productsListBinding.getRoot();

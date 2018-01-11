@@ -2,6 +2,7 @@ package arch.wb.retail.productdetails;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
@@ -13,7 +14,7 @@ import arch.wb.retail.util.SingleLiveEvent;
 
 public class ProductDetailViewModel extends AndroidViewModel {
 
-    public final ObservableField<ProductData> productDetails = new ObservableField<>();
+    public final MutableLiveData<ProductData> productDetails = new MutableLiveData<>();
     public final ObservableBoolean addedToCart = new ObservableBoolean();
     private final SingleLiveEvent<Void> mAddToCartEvent = new SingleLiveEvent<>();
 
@@ -31,7 +32,7 @@ public class ProductDetailViewModel extends AndroidViewModel {
 
             @Override
             public void onProductDataLoaded(ProductData productData) {
-                productDetails.set(productData);
+                productDetails.setValue(productData);
             }
 
             @Override

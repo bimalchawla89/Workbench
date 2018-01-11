@@ -50,15 +50,7 @@ public class CategoriesFragment extends Fragment {
         mCategoryListBinding = FragmentCategoriesBinding.inflate(inflater, container, false);
         mCategoryViewModel = HomeActivity.obtainViewModel(getActivity());
         mCategoryListBinding.setModel(mCategoryViewModel);
-
-        final android.arch.lifecycle.Observer<List<CategoryData>> observer = new android.arch.lifecycle.Observer<List<CategoryData>>() {
-            @Override
-            public void onChanged(@Nullable List<CategoryData> categoryDataList) {
-                mListAdapter.updateCategoriesList(categoryDataList);
-            }
-        };
-        mCategoryViewModel.getCategoryData().observe(this, observer);
-
+        mCategoryListBinding.setLifecycleOwner(this);
         return mCategoryListBinding.getRoot();
     }
 
