@@ -91,11 +91,22 @@
                         android:visibility="@{model.addedToCart ? View.GONE : View.VISIBLE}"
                         android:text="@string/add_cart" />
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
-            </LinearLayout>
 
-        </android.support.design.widget.CoordinatorLayout>
+                </LinearLayout>
+                <!-- Adding bottom sheet after main content -->
+                <include
+                    android:id="@+id/bottom_sheet"
+                    layout="@layout/bottom_sheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:listener="@{listener}"
+                    app:model="@{model}" />
+
+
+            </android.support.design.widget.CoordinatorLayout>
 
     </LinearLayout>
 

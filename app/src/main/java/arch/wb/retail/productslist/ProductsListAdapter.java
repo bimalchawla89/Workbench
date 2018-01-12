@@ -17,9 +17,9 @@ import arch.wb.retail.databinding.RowProductsListBinding;
 
 public class ProductsListAdapter extends BaseAdapter {
 
+    private final ProductViewModel mProductViewModel;
     private Context mContext;
     private ArrayList<ProductData> mProductsList;
-    private final ProductViewModel mProductViewModel;
 
     public ProductsListAdapter(Context context, ArrayList<ProductData> products, ProductViewModel mProductViewModel) {
         mContext = context;

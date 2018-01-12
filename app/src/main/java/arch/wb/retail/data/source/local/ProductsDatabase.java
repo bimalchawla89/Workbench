@@ -15,15 +15,8 @@ import arch.wb.retail.data.models.SubCategoryData;
 
 @Database(entities = {ProductData.class, CategoryData.class, SubCategoryData.class}, version = 1)
 public abstract class ProductsDatabase extends RoomDatabase {
-    private static ProductsDatabase INSTANCE = null;
-
-    public abstract ProductsDao productsDao();
-
-    public abstract CategoryDao categoryDao();
-
-    public abstract SubCategoryDao subCategoryDao();
-
     private static final Object lock = new Object();
+    private static ProductsDatabase INSTANCE = null;
 
     public static ProductsDatabase getInstance(Context context) {
         synchronized (lock) {
@@ -33,4 +26,10 @@ public abstract class ProductsDatabase extends RoomDatabase {
             return INSTANCE;
         }
     }
+
+    public abstract ProductsDao productsDao();
+
+    public abstract CategoryDao categoryDao();
+
+    public abstract SubCategoryDao subCategoryDao();
 }

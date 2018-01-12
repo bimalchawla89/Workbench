@@ -14,8 +14,8 @@ import arch.wb.retail.databinding.RowSubCategoriesListBinding;
 
 public class SubCategoriesListAdapter extends BaseAdapter {
 
-    private ArrayList<SubCategoryData> mSubCategoriesList;
     private final SubCategoryViewModel mSubCategoryViewModel;
+    private ArrayList<SubCategoryData> mSubCategoriesList;
 
     public SubCategoriesListAdapter(ArrayList<SubCategoryData> subCategoryData, SubCategoryViewModel mSubCategoryViewModel) {
         this.mSubCategoriesList = subCategoryData;

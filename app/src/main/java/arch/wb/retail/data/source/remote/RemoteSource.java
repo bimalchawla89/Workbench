@@ -21,16 +21,16 @@ import retrofit2.Response;
 
 public class RemoteSource implements AppDataSource {
 
-    private static volatile RemoteSource INSTANCE;
-    private static AppComponent mComponent;
-    private Context mContext;
-    private AppExecutors mAppExecutors;
     private static final String apiKey = "1662124823BA2484B430ADBCC1A9B599";
     private static final String key = "Bearer 4C4V4yUMvgI.cwA.cYw.qakgvIUDhYbrydkQgY59UniNz7HxTi5luInXlweDEZ8";
     private static final String CATEGORY_SUB_BASE_URL = "/indexes/categories/docs?api-version=2015-02-28&$filter=parent eq";
     private static final String PRODUCT_SUB_BASE_URL = "/indexes/products/docs?api-version=2015-02-28&search=";
+    private static volatile RemoteSource INSTANCE;
+    private static AppComponent mComponent;
     @Inject
     transient public RemoteServices mRemoteServices;
+    private Context mContext;
+    private AppExecutors mAppExecutors;
 
     private RemoteSource(Context context, AppExecutors appExecutors) {
         this.mContext = context;

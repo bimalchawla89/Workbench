@@ -37,8 +37,8 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
                 android:padding="5dp"
-                bind:imageUrl="@{product.imageDomain + product.imageSuffix}"
-                android:src="@drawable/ic_launcher_background">
+                android:src="@drawable/ic_launcher_background"
+                bind:imageUrl="@{product.imageDomain + product.imageSuffix}">
 
             </ImageView>
 

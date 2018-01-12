@@ -10,16 +10,27 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-//    signingConfigs {
-//        debug {
-//            storeFile file('/Users/kamal/Documents/sonarmerge/android-workbench/app/keystore/debug.keystore')
-//            storePassword "android"
-//            keyAlias "androiddebugkey"
-//            keyPassword "android"
-//        }
-//    }
-    buildTypes {
+    signingConfigs {
         release {
+            storeFile file('workbench_keystore.jks')
+            storePassword "android123456"
+            keyAlias "workbenchalias"
+            keyPassword "android123456"
+        }
+        debug {
+            storeFile file('workbench_keystore.jks')
+            storePassword "android123456"
+            keyAlias "workbenchalias"
+            keyPassword "android123456"
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
+            debuggable true
             postprocessing {
                 removeUnusedCode false
                 removeUnusedResources false

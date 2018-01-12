@@ -45,6 +45,11 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final AppRepository mProductsRepository;
 
+    private ViewModelFactory(Application application, AppRepository repository) {
+        mApplication = application;
+        mProductsRepository = repository;
+    }
+
     public static ViewModelFactory getInstance(Application application) {
         if (INSTANCE == null) {
             synchronized (ViewModelFactory.class) {
@@ -60,11 +65,6 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     @VisibleForTesting
     public static void destroyInstance() {
         INSTANCE = null;
-    }
-
-    private ViewModelFactory(Application application, AppRepository repository) {
-        mApplication = application;
-        mProductsRepository = repository;
     }
 
     @Override

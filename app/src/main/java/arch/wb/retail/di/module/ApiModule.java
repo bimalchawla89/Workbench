@@ -29,8 +29,8 @@ import dagger.Provides;
 public class ApiModule {
 
     private static final String TAG = ApiModule.class.getSimpleName();
-    private MyApplication app;
     private static final String BASE_URL = "https://adventure-works-search2.search.windows.net";
+    private MyApplication app;
 
     public ApiModule(MyApplication app) {
         this.app = app;

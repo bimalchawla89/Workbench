@@ -24,9 +24,8 @@ import static org.hamcrest.Matchers.notNullValue;
 @RunWith(AndroidJUnit4.class)
 public class CategoryDaoTest {
 
-    private ProductsDatabase mProductsDatabase;
-
     private static final CategoryData CATEGORY = new CategoryData("id1", "title1", "description1");
+    private ProductsDatabase mProductsDatabase;
 
     @Before
     public void initDatabase() {
