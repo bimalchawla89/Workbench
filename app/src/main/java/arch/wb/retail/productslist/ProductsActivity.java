@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import arch.wb.retail.R;
 import arch.wb.retail.ViewModelFactory;
@@ -41,9 +42,10 @@ public class ProductsActivity extends AppCompatActivity {
 
         ActivityProductsBinding activitySubCategoriesBinding = DataBindingUtil.setContentView(this, R.layout.activity_products);
         mProductViewModel = obtainViewModel(this);
-        mProductViewModel.getAllProducts(getIntent().getStringExtra(EXTRA_SUB_CATEGORY));
+        mProductViewModel.getAllProducts(this, getIntent().getStringExtra(EXTRA_SUB_CATEGORY));
 
         activitySubCategoriesBinding.setModel(mProductViewModel);
+        activitySubCategoriesBinding.setLifecycleOwner(this);
         activitySubCategoriesBinding.executePendingBindings();
 
         setupToolbar();

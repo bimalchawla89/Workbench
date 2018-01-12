@@ -2,6 +2,7 @@ package arch.wb.retail.productdetails;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
@@ -13,29 +14,26 @@ import arch.wb.retail.util.SingleLiveEvent;
 
 public class ProductDetailViewModel extends AndroidViewModel {
 
-    public final ObservableField<ProductData> task = new ObservableField<>();
+    public final MutableLiveData<ProductData> productDetails = new MutableLiveData<>();
     public final ObservableBoolean addedToCart = new ObservableBoolean();
     private final SingleLiveEvent<Void> mAddToCartEvent = new SingleLiveEvent<>();
     private final SingleLiveEvent<Void> mPaymentEvent = new SingleLiveEvent<>();
 
-    private final Context mContext;
     private final AppRepository mAppRepository;
-
 
     public ProductDetailViewModel(
             Application context,
             AppRepository repository) {
         super(context);
-        mContext = context.getApplicationContext(); // Force use of Application Context.
         mAppRepository = repository;
     }
 
-    public void getProductDetails(String productId) {
-        mAppRepository.getProductDetails(mContext, productId, new AppDataSource.GetProductDataCallback() {
+    public void getProductDetails(Context context, String productId) {
+        mAppRepository.getProductDetails(context, productId, new AppDataSource.GetProductDataCallback() {
 
             @Override
             public void onProductDataLoaded(ProductData productData) {
-                task.set(productData);
+                productDetails.setValue(productData);
             }
 
             @Override

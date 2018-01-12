@@ -2,9 +2,11 @@ package arch.wb.retail.categorieslist;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
+
+import java.util.List;
 
 import arch.wb.retail.data.models.CategoryData;
 import arch.wb.retail.data.models.CategoryList;
@@ -14,10 +16,9 @@ import arch.wb.retail.util.SingleLiveEvent;
 
 public class CategoryViewModel extends AndroidViewModel {
 
-    public final ObservableList<CategoryData> categories = new ObservableArrayList<>();
+    public final MutableLiveData<List<CategoryData>> categories = new MutableLiveData<>();
     private final SingleLiveEvent<String> mOpenCategoryEvent = new SingleLiveEvent<>();
 
-    private final Context mContext;
     private final AppRepository mAppRepository;
 
 
@@ -25,17 +26,15 @@ public class CategoryViewModel extends AndroidViewModel {
             Application context,
             AppRepository repository) {
         super(context);
-        mContext = context.getApplicationContext(); // Force use of Application Context.
         mAppRepository = repository;
     }
 
-    public void getAllCategories() {
-        mAppRepository.getCategoriesList(mContext, new AppDataSource.GetCategoriesCallback() {
+    public void getAllCategories(Context context) {
+        mAppRepository.getCategoriesList(context.getApplicationContext(), new AppDataSource.GetCategoriesCallback() {
 
             @Override
             public void onCategoriesLoaded(CategoryList categoryList) {
-                categories.clear();
-                categories.addAll(categoryList.getValue());
+                categories.setValue(categoryList.getValue());
             }
 
             @Override
@@ -43,6 +42,10 @@ public class CategoryViewModel extends AndroidViewModel {
 
             }
         });
+    }
+
+    public LiveData<List<CategoryData>> getCategoryData() {
+        return categories;
     }
 
     public SingleLiveEvent<String> getOpenCategoryEvent() {

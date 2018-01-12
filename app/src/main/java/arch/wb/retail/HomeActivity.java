@@ -42,16 +42,6 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
     private Toolbar toolbar;
     private CategoryViewModel mViewModel;
 
-    public static CategoryViewModel obtainViewModel(FragmentActivity activity) {
-        // Use a Factory to inject dependencies into the ViewModel
-        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-
-        CategoryViewModel viewModel =
-                ViewModelProviders.of(activity, factory).get(CategoryViewModel.class);
-
-        return viewModel;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +55,7 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
 
         mViewModel = obtainViewModel(this);
 
-        // Subscribe to "open task" event
+        // Subscribe to "open productDetails" event
         mViewModel.getOpenCategoryEvent().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String categoryId) {
@@ -87,6 +77,16 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
 
     }
 
+    public static CategoryViewModel obtainViewModel(FragmentActivity activity) {
+        // Use a Factory to inject dependencies into the ViewModel
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+
+        CategoryViewModel viewModel =
+                ViewModelProviders.of(activity, factory).get(CategoryViewModel.class);
+
+        return viewModel;
+    }
+
     private void setupToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         mTitle = getTitle();
@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
 
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        // set up the drawer's list view with items and click listener
+        // set up the drawer's list view with productsList and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, mMenuItems));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -123,6 +123,14 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    /* The click listener for ListView in the navigation drawer */
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
     }
 
     private void selectItem(int position) {
@@ -169,7 +177,6 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
      * When using the ActionBarDrawerToggle, you must call it during
      * onPostCreate() and onConfigurationChanged()...
      */
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -186,11 +193,18 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             return;
+        } else {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+                return;
+            } else {
+                super.onBackPressed();
+            }
         }
-        finish();
+        super.onBackPressed();
     }
 
     private void logout() {
@@ -199,22 +213,4 @@ public class HomeActivity extends AppCompatActivity implements CartFragment.OnFr
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
-
-    /* The click listener for ListView in the navigation drawer */
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
-    }
-
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
 }

@@ -37,11 +37,11 @@ public class ProductDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityProductDetailBinding activityProductsBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail);
+        final ActivityProductDetailBinding activityProductsBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail);
         BottomSheetBinding bottomSheetBinding = BottomSheetBinding.inflate(getLayoutInflater());
         sheetBehavior = BottomSheetBehavior.from(bottomSheetBinding.bottomSheet);
         mDetailViewModel = obtainViewModel(this);
-        mDetailViewModel.getProductDetails(getIntent().getStringExtra(EXTRA_PRODUCT_ID));
+        mDetailViewModel.getProductDetails(this, getIntent().getStringExtra(EXTRA_PRODUCT_ID));
         activityProductsBinding.setModel(mDetailViewModel);
 
 
@@ -58,6 +58,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         };
 
         activityProductsBinding.setListener(addToCartActionListener);
+        activityProductsBinding.setLifecycleOwner(this);
         activityProductsBinding.executePendingBindings();
 
         setupToolbar();

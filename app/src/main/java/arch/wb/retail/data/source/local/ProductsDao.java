@@ -16,7 +16,7 @@ import arch.wb.retail.data.models.ProductData;
 @Dao
 public interface ProductsDao {
 
-//    @Query("SELECT * FROM Product")
+    //    @Query("SELECT * FROM Product")
 //    List<Product> getAllProducts();
 //
     @Query("SELECT * FROM productData WHERE id = :productId")

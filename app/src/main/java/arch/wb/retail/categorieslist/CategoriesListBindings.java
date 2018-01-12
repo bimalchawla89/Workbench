@@ -9,11 +9,13 @@ import arch.wb.retail.data.models.CategoryData;
 
 public class CategoriesListBindings {
 
+    private static final String TAG = CategoriesListBindings.class.getSimpleName();
+
     @SuppressWarnings("unchecked")
     @BindingAdapter("app:categories")
     public static void setCategories(ListView listView, List<CategoryData> items) {
         CategoryListAdapter adapter = (CategoryListAdapter) listView.getAdapter();
-        if (adapter != null) {
+        if (adapter != null && null != items) {
             adapter.updateCategoriesList(items);
         }
     }

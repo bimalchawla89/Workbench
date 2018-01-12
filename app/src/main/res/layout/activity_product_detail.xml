@@ -6,6 +6,7 @@
     <data>
 
         <import type="android.view.View" />
+
         <import type="android.view.View.OnClickListener" />
 
         <variable
@@ -38,57 +39,57 @@
 
         </android.support.design.widget.AppBarLayout>
 
-            <android.support.design.widget.CoordinatorLayout
-                android:id="@+id/coordinatorLayout"
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <ImageView
+                    android:id="@+id/product_id"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    bind:imageUrl="@{model.productDetails.imageDomain + model.productDetails.imageSuffix}" />
 
-                    <ImageView
-                        android:id="@+id/product_id"
+                <TextView
+                    android:id="@+id/product_title"
+                    style="?android:textAppearanceLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:text="@{model.productDetails.title}" />
+
+                <TextView
+                    android:id="@+id/product_description"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:text="@{model.productDetails.description}" />
+
+                <TextView
+                    android:id="@+id/product_price"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(model.productDetails.price)}" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        bind:imageUrl="@{model.task.imageDomain + model.task.imageSuffix}" />
-
-                    <TextView
-                        android:id="@+id/product_title"
-                        style="?android:textAppearanceLarge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:text="@{model.task.title}" />
-
-                    <TextView
-                        android:id="@+id/product_description"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:text="@{model.task.description}" />
-
-                    <TextView
-                        android:id="@+id/product_price"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(model.task.price)}" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:onClick="@{() -> listener.onAddToCartClicked()}"
-                            android:text="@string/add_cart"
-                            android:visibility="@{model.addedToCart ? View.GONE : View.VISIBLE}" />
+                        android:layout_alignParentBottom="true"
+                        android:onClick="@{() -> listener.onAddToCartClicked()}"
+                        android:visibility="@{model.addedToCart ? View.GONE : View.VISIBLE}"
+                        android:text="@string/add_cart" />
 
                     </RelativeLayout>
 

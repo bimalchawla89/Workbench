@@ -22,16 +22,16 @@ public interface RemoteServices {
 
     @GET
     Call<ProductList> findProductsByTitle(@Url String url,
-            @Header("api-key") String apiKey
+                                          @Header("api-key") String apiKey
     );
 
     @GET
     Call<CategoryList> getCategories(@Url String url,
-            @Header("api-key") String apiKey
+                                     @Header("api-key") String apiKey
     );
 
     @GET
     Call<SubcategoryList> getSubCategories(@Url String url,
-            @Header("api-key") String apiKey
+                                           @Header("api-key") String apiKey
     );
 }

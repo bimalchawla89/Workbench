@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import arch.wb.retail.HomeActivity;
 import arch.wb.retail.data.models.CategoryData;
@@ -19,6 +20,7 @@ import arch.wb.retail.databinding.FragmentCategoriesBinding;
  */
 public class CategoriesFragment extends Fragment {
 
+    private static final String TAG = CategoriesFragment.class.getSimpleName();
     private CategoryViewModel mCategoryViewModel;
 
     private FragmentCategoriesBinding mCategoryListBinding;
@@ -40,8 +42,6 @@ public class CategoriesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
@@ -50,6 +50,7 @@ public class CategoriesFragment extends Fragment {
         mCategoryListBinding = FragmentCategoriesBinding.inflate(inflater, container, false);
         mCategoryViewModel = HomeActivity.obtainViewModel(getActivity());
         mCategoryListBinding.setModel(mCategoryViewModel);
+        mCategoryListBinding.setLifecycleOwner(this);
         return mCategoryListBinding.getRoot();
     }
 
@@ -63,11 +64,11 @@ public class CategoriesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mCategoryViewModel.getAllCategories();
+        mCategoryViewModel.getAllCategories(getActivity());
     }
 
     private void setupListAdapter() {
-        ListView categoryListView =  mCategoryListBinding.lvCategories;
+        ListView categoryListView = mCategoryListBinding.lvCategories;
 
         mListAdapter = new CategoryListAdapter(
                 new ArrayList<CategoryData>(0),
