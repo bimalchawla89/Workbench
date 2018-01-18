@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="@{String.valueOf(model.task.price)}"
+                    android:text="@{String.valueOf(model.productDetails.price)}"
                     android:textSize="15dp"
                     android:textStyle="bold"></TextView>
             </LinearLayout>
@@ -68,7 +68,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{model.task.title}" />
+                android:text="@{model.productDetails.title}" />
 
             <TextView
                 android:layout_width="wrap_content"
